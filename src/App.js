@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import LogIn from './components/LogIn/LogIn.js';
+// import LogIn from './components/LogIn/LogIn.js';
 import Nav from './components/Nav/Nav.js';
-import SignUp from './components/SignUp/SignUp.js';
+// import SignUp from './components/SignUp/SignUp.js';
 import Profile from './components/Profile/Profile.js';
 
 class App extends Component {
@@ -42,8 +42,8 @@ class App extends Component {
     return (
       <div className="App">
         <Nav />
-        <LogIn isLoggedIn={this.state.isLoggedIn} handleLogIn={this.loggedIn} handleLogOut={this.loggedOut}/>
-        <SignUp />
+        {/* <LogIn isLoggedIn={this.state.isLoggedIn} handleLogIn={this.loggedIn} handleLogOut={this.loggedOut}/>
+        <SignUp /> */}
         <Profile />
       </div>
     );
