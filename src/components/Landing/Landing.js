@@ -1,9 +1,21 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-const Landing = props => {
-  return(
-    <h1>Landing</h1>
-  )
+import Carousel from './Carousel/Carousel';
+import Description from './Description/Description';
+import CityPosts from './CityPosts/CityPosts';
+import { withRouter } from 'react-router-dom';
+
+class Landing extends Component {
+  
+  render(){
+    return(
+      <>
+      {this.props.isLogin ? <CityPosts/> : <div><Carousel />
+      <Description /></div>}
+      </>
+    )
+  }
+  
 }
 
-export default Landing;
+export default withRouter(Landing);

@@ -9,11 +9,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Navigation from './components/Navigation/Navigation';
 import Profile from './components/Profile/Profile';
-import CityPosts from './components/CityPosts/CityPosts';
+import CityPosts from './components/Landing/CityPosts/CityPosts';
 import Landing from './components/Landing/Landing';
-
-import HeroCarousel from './components/Carousel/Carousel';
-import Description from './components/Description/Description';
+import { withRouter } from 'react-router-dom';
 
 class App extends Component {
 
@@ -22,44 +20,48 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    let token = localStorage.getItem('jwt');
-    if (token) {
+    this.setCurrentUser(localStorage.getItem('jwt'))
+    
+  }
+  setCurrentUser = jwt => {
+    if (jwt) {
       this.setState({
         islogin: true
       })
-    }else {
-      this.setState({
-        islogin: false
-      })
+      localStorage.setItem('jwt', jwt)
     }
   }
-  // { !this.state.isLogin ? <Landing/>: <CityPosts/>}
+  handleLogout(){
+    localStorage.removeItem('jwt');
+    window.location='/';
+  }
+  
 
 
   render() {
     return (
       <Router>
     
-        <Navigation />
+        <Navigation isLogin={this.state.isLogin} setCurrentUser={this.setCurrentUser} handleLogout={this.handleLogout} />
         
         <Switch>
-          <Route path="/profile">
-          <Profile />
-          </Route>
-          <Route path="/">
-          <Landing />
-          </Route>
+          <Route path="/profile" component={Profile} />
+          
+          <Route path="/" render={() => (
+        <Landing isLogin={this.state.isLogin} setCurrentUser={this.setCurrentUser} />
+      )}/>
+          
           <Route path="/citypost">
           <CityPosts />
           </Route>
+        
          
         </Switch>
-        <HeroCarousel />
-        <Description />
+        
       </Router>
   
     );
   }
 }
 
-export default App;
+export default withRouter(App);
