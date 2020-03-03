@@ -20,8 +20,7 @@ class SignUp extends Component {
     console.log(this.state);
     // console.log(`localhost:4000/api/v1/auth/signup`)
     axios
-      .post(`http://localhost:4000/api/v1/auth/signup`, this.state, {
-      })
+      .post(`http://localhost:4000/api/v1/auth/signup`, this.state)
       .then(res => {
         console.log('LOOLLLOLOLO:', res)
         // body: { email: '', password: '' }
