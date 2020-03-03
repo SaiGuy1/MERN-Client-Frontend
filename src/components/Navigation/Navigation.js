@@ -1,8 +1,8 @@
 import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { NavLink, Link } from 'react-router-dom';
-import Loginn from '../Loginn/Loginn';
-import Signupp from '../Signupp/Signupp';
+import Login from '../Login/Login';
+import Signup from '../Signup/Signup';
 import './Navigation.css';
 
 class Navigation extends React.Component {
@@ -71,7 +71,7 @@ class Navigation extends React.Component {
                 <Modal.Header closeButton>
                 </Modal.Header>
                 <Modal.Body>
-                  <Loginn />
+                  <Login />
                 </Modal.Body>
               </Modal>
             </li>
@@ -81,7 +81,7 @@ class Navigation extends React.Component {
                 <Modal.Header closeButton>
                 </Modal.Header>
                 <Modal.Body>
-                  <Signupp />
+                  <Signup />
                   <hr />
                   Need to log in? HERE
                 </Modal.Body>
