@@ -7,38 +7,69 @@ class Profile extends Component {
   state = {
       editUsername: false,
       editCity: false,
-      usernameVal: '',
+      username: '',
       cityVal: '',
       userData: {},
-      cities: []
+      cities: [],
+      email: ''
   }
 
   componentDidMount = () => {
-      axios.get(`${process.env.REACT_APP_API_URL}/users`,{headers: {"Authorization": `Bearer ${localStorage.token}`}})
+    console.log("WOWZA")
+    axios.get(`http://localhost:4000/api/v1/profile`,{headers: {"authorization": `bearer ${localStorage.getItem('jwt')}`}})
       .then(res=>{
           this.setState({
-              userData: res.data,
+              userData: res.data.User,
               usernameVal: res.data.username,
-              cityVal: res.data.city
           })
       })
       .catch(err=>console.log(err))
+
       this.setState({
           cities: ["London","San Francisco","Paris"]
       })
+
+    // axios.get(`http://localhost:4000/api/v1/location`)
+    //   .then(res=> {
+    //     this.setState({
+    //       console.log(res.AllLocation)
+    //       cities:
+    //     })
+    //   })
+  }
+  handleChange = event => {
+      let value = event.target.value;
+      this.setState({
+        email: value
+
+      });
+
   }
 
-  handleInput = (e,option) => {
-      this.setState({ [option]: e.target.value })
+  handleSubmit = event => {
+    event.preventDefault();
+    console.log(this.state);
+    // console.log(`localhost:4000/api/v1/auth/signup`)
+    axios.put(`http://localhost:4000/api/v1/profile/update`, {username: this.state.username, email:this.state.email} , {headers: {"authorization": `bearer ${localStorage.getItem('jwt')}`}})
+      .then(res => {
+        console.log('LOOLLLOLOLO:', res)
+        this.setState({
+          email: res.email,
+          username: res.username
+        })
+        // body: { email: '', password: '' }
+        // localStorage.setItem({jwt: res.jwt});
+      })
+      .catch(err => console.log(err.res));
+  };
+
+  changeInput = () => {
+    document.getElementById('EditInfo').style.display = "block";
   }
 
-  changeInputClick = (option) => {
-      this.setState({[option]: true})
-  }
-
-  stopEdit = (option) => {
-      this.setState({[option]: false})
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevState)
+  // }
 
   render() {
 //alert(this.state.cityVal)
@@ -46,18 +77,7 @@ class Profile extends Component {
 <div>
   <h2>Hello</h2>
   <p>
-      Username:
-      {
-      !this.state.editUsername?
-          <span onClick={()=>this.changeInputClick("editUsername")}>
-            {this.state.usernameVal}
-          </span> :
-          <input type="text" name="username"
-              defaultValue={this.state.usernameVal}
-              onChange={(e)=>this.handleInput(e,"usernameVal")}
-              onBlur={()=>this.stopEdit("editUsername")}
-          />
-      }
+      Username: {this.state.username}
   </p>
   <p>
     City:
@@ -70,13 +90,28 @@ class Profile extends Component {
       }
     </select>
   </p>
+  <div>
+      Email: {this.state.email}
+      <button class="edit" onClick={this.changeInput}> Edit Info </button>
+      <form id="EditInfo" style={{display: "none"}}>
+      <div>
+          <label htmlFor='email'>New Email</label>
+          <input type='email' name='email' onChange={this.handleChange} />
+      </div>
+      <div>
+          <label htmlFor='username'>New Username</label>
+          <input type='username' name='username' onChange={this.handleChange} />
+      </div>
+      <div>
+        <input value='Submit' type='submit' onClick={this.handleSubmit} />
+      </div>
+      </form>
+  </div>
   <p>
-      Email: {this.state.userData.email}
+      Join Date: {this.state.userData.createdAt}
   </p>
-  <p>
-      Join Date: {this.state.userData.joindate}
-  </p>
-</div>
+  </div>
+
       )
   }
 }

@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import SignUp from '../components/SignUp/SignUp.js';
 import LogIn from './components/LogIn/LogIn.js';
 import Nav from './components/Nav/Nav.js';
+import Profile from './components/Profile/Profile.js';
 
 export default ({ currentUser, setCurrentUser }) => (
   <Switch>
@@ -15,6 +16,6 @@ export default ({ currentUser, setCurrentUser }) => (
         <Login currentUser={currentUser} setCurrentUser={setCurrentUser} />
       )}
     />
-    <Route path='/profile' component={ProfileContainer} />
+    <Route path='/profile' component={Profile} />
   </Switch>
 );
