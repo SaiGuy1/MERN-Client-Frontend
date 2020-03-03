@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-// import LogIn from './components/LogIn/LogIn.js';
+import {
+    Route,
+    Link,
+    Switch
+} from 'react-router-dom';
+import LogIn from './components/LogIn/LogIn';
 import Navigation from './components/Navigation/Navigation.js';
-// import SignUp from './components/SignUp/SignUp.js';
+import SignUp from './components/SignUp/SignUp.js';
 import Profile from './components/Profile/Profile.js';
 
 class App extends Component {
@@ -42,8 +47,8 @@ class App extends Component {
     return (
       <div className="App">
         <Navigation />
-        {/* <LogIn isLoggedIn={this.state.isLoggedIn} handleLogIn={this.loggedIn} handleLogOut={this.loggedOut}/>
-        <SignUp /> */}
+        <LogIn />
+        <SignUp />
         <Profile />
       </div>
     );

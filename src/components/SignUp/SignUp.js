@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-require('dotenv')
 
 class SignUp extends Component {
   state = {
-    name: '',
+    username: '',
     email: '',
     password: ''
   };
@@ -21,12 +20,12 @@ class SignUp extends Component {
     console.log(this.state);
     // console.log(`localhost:4000/api/v1/auth/signup`)
     axios
-      .post(`localhost:4000/api/v1/auth/signup`, this.state, {
-        withCredentials: true,
+      .post(`http://localhost:4000/api/v1/auth/signup`, this.state, {
       })
       .then(res => {
-        console.log('LOOLLLOLOLO:', res);
-        localStorage.setItem({jwt: res.jwt});
+        console.log('LOOLLLOLOLO:', res)
+        // body: { email: '', password: '' }
+        // localStorage.setItem({jwt: res.jwt});
       })
       .catch(err => console.log(err.res));
   };
@@ -41,8 +40,8 @@ class SignUp extends Component {
 
           <form>
           <div>
-              <label htmlFor='email'>User Name</label>
-              <input type='text' name='email' onChange={this.handleChange} />
+              <label htmlFor='username'>User Name</label>
+              <input type='text' name='username' onChange={this.handleChange} />
           </div>
 
           <div>

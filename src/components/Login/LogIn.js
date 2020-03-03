@@ -17,14 +17,15 @@ class LogIn extends Component {
   handleSubmit = event => {
     event.preventDefault();
     axios
-      .post(`${process.env.REACT_APP_API_URL}/auth/login`, this.state, {
+      .post(`http://localhost:4000/api/v1/auth/login`, this.state, {
 
       })
       .then(res => {
         console.log(res);
         // stores token into local storage
-        localStorage.setItem({jwt: res});
-        this.props.setCurrentUser(res.data.data);
+        localStorage.setItem('jwt', res.data.jwt);
+        console.log(localStorage.getItem('jwt'))
+        // this.setCurrentUser(res.data.data);
         this.props.history.push('/profile');
       })
       .catch(err => console.log(err.response));
