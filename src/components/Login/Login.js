@@ -35,10 +35,7 @@ class Login extends Component {
   render () {
     return (
         <div>
-
             <div>
-                <h2>Log In</h2>
-
                 <form>
                 <div>
                     <label htmlFor='email'>Email</label>
@@ -48,12 +45,11 @@ class Login extends Component {
                     <label htmlFor='password'>Password</label>
                     <input type='password' name='password' onChange={this.handleChange} />
                 </div>
-                <input value='Submit' type='submit' onClick={this.handleSubmit} />
+                {/* <input value='Submit' type='submit' onClick={this.handleSubmit} /> */}
+                <button className='btn btn-primary float-right mb-5' value='Submit' type='submit' onClick={this.handleSubmit}>Signup</button>
                 </form>
             </div>
-
           </div>
-
     )
   }
 }

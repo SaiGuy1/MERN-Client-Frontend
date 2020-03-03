@@ -28,6 +28,8 @@ class Navigation extends React.Component {
       })
     } 
   }
+  
+  // Handle OPEN and CLOSE of LOGIN and SIGNUP
   handleLoginClose() {
     this.setState({ loginshow: false });
   }
@@ -35,6 +37,7 @@ class Navigation extends React.Component {
   handleLoginShow() {
     this.setState({ loginshow: true });
   }
+  
   handleSignupClose() {
     this.setState({ signupshow: false });
   }
@@ -42,6 +45,21 @@ class Navigation extends React.Component {
   handleSignupShow() {
     this.setState({ signupshow: true });
   }
+  
+  // SWITCHING between SIGNUP and LOGIN **WIP**
+  handleLoginSwitch = () => {
+    console.log('Switching...');
+    this.handleSignupClose();
+    this.handleLoginShow();
+  }
+  
+  handleSignupSwitch = () => {
+    console.log('Switching...');
+    this.handleLoginClose();
+    this.handleSignupShow();
+  }
+
+
   handleLogout(){
     localStorage.removeItem('jwt');
     window.location='/';
@@ -69,9 +87,12 @@ class Navigation extends React.Component {
               <a className="nav-link" href="#" id="Login" bsStyle="primary" bsSize="large" onClick={this.handleLoginShow}>Log in</a>
               <Modal show={this.state.loginshow} onHide={this.handleLoginClose}>
                 <Modal.Header closeButton>
+                <h2>Log In</h2>
                 </Modal.Header>
                 <Modal.Body>
                   <Login />
+                  <hr />
+                  <a className="nav-link" href="#" id="Signup" bsStyle="primary" bsSize="large" onClick={this.handleSignupSwitch}>Need to sign up?</a>
                 </Modal.Body>
               </Modal>
             </li>
@@ -79,11 +100,12 @@ class Navigation extends React.Component {
               <a className="nav-link" href="#" id="Signup" bsStyle="primary" bsSize="large" onClick={this.handleSignupShow}>Sign up</a>
               <Modal show={this.state.signupshow} onHide={this.handleSignupClose}>
                 <Modal.Header closeButton>
+                <h2>Sign Up</h2>
                 </Modal.Header>
                 <Modal.Body>
                   <Signup />
                   <hr />
-                  Need to log in? HERE
+                  <a className="nav-link" href="#" id="Login" bsStyle="primary" bsSize="large" onClick={this.handleLoginSwitch}>Need to log in?</a>
                 </Modal.Body>
               </Modal>
             </li></>)}
