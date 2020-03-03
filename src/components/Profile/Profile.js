@@ -5,23 +5,26 @@ import axios from "axios";
 class Profile extends Component {
 
   state = {
-      editUsername: false,
-      editCity: false,
-      username: '',
-      cityVal: '',
-      userData: {},
+    
+      city: '',
+      userData: {location:"aaa"},
       cities: [],
-      email: ''
+      email: '',
+      joinDate: ''
   }
 
   componentDidMount = () => {
     console.log("WOWZA")
     axios.get(`http://localhost:4000/api/v1/profile`,{headers: {"authorization": `bearer ${localStorage.getItem('jwt')}`}})
       .then(res=>{
-          this.setState({
-              userData: res.data.User,
-              usernameVal: res.data.username,
-          })
+        console.log(res.data.User);
+        this.setState({
+          joinDate: res.data.User.createdAt
+        })
+        delete res.data.User.createdAt;
+        this.setState({
+            userData: res.data.User,
+        })
       })
       .catch(err=>console.log(err))
 
@@ -29,35 +32,44 @@ class Profile extends Component {
           cities: ["London","San Francisco","Paris"]
       })
 
-    // axios.get(`http://localhost:4000/api/v1/location`)
-    //   .then(res=> {
-    //     this.setState({
-    //       console.log(res.AllLocation)
-    //       cities:
-    //     })
-    //   })
+    axios.get(`http://localhost:4000/api/v1/location`)
+      .then(res=> {
+        console.log(res.data.AllLocation);
+        this.setState({
+          cities:res.data.AllLocation
+        })
+      })
   }
-  handleChange = event => {
+  handleEmailChange = event => {
       let value = event.target.value;
       this.setState({
-        email: value,
+        userData: {
+          ...this.state.userData,
+          email: value
+        }
       });
-
   }
+  handleUserNameChange = event => {
+    let value = event.target.value;
+    this.setState({
+      userData: {
+        ...this.state.userData,
+        username: value
+      }
+    });
+}
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log(this.state);
-    // console.log(`localhost:4000/api/v1/auth/signup`)
-    axios.put(`http://localhost:4000/api/v1/profile/update`, {username: this.state.username, email:this.state.email} , {headers: {"authorization": `bearer ${localStorage.getItem('jwt')}`}})
+    console.log('bodytosend',this.state.userData);
+    
+    axios.put(`http://localhost:4000/api/v1/profile/update`, this.state.userData , {headers: {"authorization": `bearer ${localStorage.getItem('jwt')}`}})
       .then(res => {
-        console.log('LOOLLLOLOLO:', res)
+        console.log('updateUser', res.data.data.updatedUser)
+
         this.setState({
-          email: res.email,
-          username: res.username
+          userData:res.data.data.updatedUser
         })
-        // body: { email: '', password: '' }
-        // localStorage.setItem({jwt: res.jwt});
       })
       .catch(err => console.log(err.res));
   };
@@ -66,40 +78,57 @@ class Profile extends Component {
     document.getElementById('EditInfo').style.display = "block";
   }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (prevState)
-  // }
+
+  handleCity = (e) => {
+    console.log(e.target.value)
+    this.setState({
+      userData:{
+        ...this.state.userData,
+        location: e.target.value
+      }
+    })
+  }
 
   render() {
 //alert(this.state.cityVal)
+console.log('in render', this.state.userData)
       return(
 <div>
   <h2>Hello</h2>
   <p>
-      Username: {this.state.username}
+      Username: {this.state.userData.username}
   </p>
-  <p>
-    City:
-    <select onChange={this.handleInput} name="city">
-      {
-      this.state.cities.map((city,index)=>(
-        city!==this.state.cityVal ? <option key={index+1} value={city}>{city} </option> :
-        <option key={index+1} value={city} selected>{city}</option>
-      ))
-      }
-    </select>
-  </p>
+  {(this.state.userDate || this.state.userData.location) && <p> City: {this.state.userData.location.city}
+  </p>}
   <div>
-      Email: {this.state.email}
+      Email: {this.state.userData.email}
       <button className="edit" onClick={this.changeInput}> Edit Info </button>
       <form id="EditInfo" style={{display: "none"}}>
       <div>
           <label htmlFor='email'>New Email</label>
-          <input type='email' name='email' onChange={this.handleChange} />
+          <input type='email' name='email' value={this.state.userData.email} onChange={this.handleEmailChange} />
       </div>
       <div>
           <label htmlFor='username'>New Username</label>
-          <input type='username' name='username' onChange={this.handleChange} />
+          <input type='username' name='username'  value={this.state.userData.username} onChange={this.handleUserNameChange} />
+      </div>
+      <div>
+      <select onChange={this.handleCity.bind(this)}>
+      {
+      this.state.cities.map(city => {
+        // console.log(city)
+        // console.log('incity userdata',this.state.userData);
+        if (!this.state.userData.location) {
+          // console.log('no location')
+          return <option key={city._id} value={city._id}>{city.city}</option>
+        } else {
+          // console.log('yes location')
+          var selected = (city._id === this.state.userData.location._id) ? 'selected' : 'false';
+          return <option key={city._id} value={city._id} selected={selected}>{city.city}</option>
+        }
+      })
+    }
+    </select>
       </div>
       <div>
         <input value='Submit' type='submit' onClick={this.handleSubmit} />
@@ -107,7 +136,7 @@ class Profile extends Component {
       </form>
   </div>
   <p>
-      Join Date: {this.state.userData.createdAt}
+      Join Date: {this.state.joinDate}
   </p>
   </div>
 

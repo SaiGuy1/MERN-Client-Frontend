@@ -72,8 +72,6 @@ class Navigation extends React.Component {
                 </Modal.Header>
                 <Modal.Body>
                   <Login />
-                  <hr />
-                  Need to sign up? HERE
                 </Modal.Body>
               </Modal>
             </li>

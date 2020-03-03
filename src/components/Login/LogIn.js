@@ -25,8 +25,8 @@ class Login extends Component {
         // stores token into local storage
         localStorage.setItem('jwt', res.data.jwt);
         console.log(localStorage.getItem('jwt'))
-        // this.setCurrentUser(res.data.data);
-        this.props.history.push('/profile');
+        window.location='/profile';
+        // this.props.history.push('/profile');
       })
       .catch(err => console.log(err.response));
   };
