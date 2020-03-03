@@ -52,7 +52,8 @@ class PostList extends Component {
           </div>
             <div class="col-md-8">
               <div class="card-body">
-                <h5 class="card-title">{this.state.ci}</h5>
+                <h5 class="card-title">{this.state.city}</h5>
+                <h5 class="card-title">{this.state.id}</h5>
                 <p class="card-text">{this.state.content}</p>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
               </div>
