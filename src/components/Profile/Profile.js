@@ -2,10 +2,12 @@ import React, {Component} from "react";
 
 import axios from "axios";
 
+import PostList from '../PostList/PostList';
+
 class Profile extends Component {
 
   state = {
-    
+
       city: '',
       userData: {location:"aaa"},
       cities: [],
@@ -62,7 +64,7 @@ class Profile extends Component {
   handleSubmit = event => {
     event.preventDefault();
     console.log('bodytosend',this.state.userData);
-    
+
     axios.put(`http://localhost:4000/api/v1/profile/update`, this.state.userData , {headers: {"authorization": `bearer ${localStorage.getItem('jwt')}`}})
       .then(res => {
         console.log('updateUser', res.data.data.updatedUser)
@@ -127,7 +129,7 @@ console.log('in render', this.state.userData)
           return <option key={city._id} value={city._id} selected={selected}>{city.city}</option>
         }
       })
-    }
+      }
     </select>
       </div>
       <div>
@@ -138,7 +140,11 @@ console.log('in render', this.state.userData)
   <p>
       Join Date: {this.state.joinDate}
   </p>
+  <div>
+    <PostList />
   </div>
+  </div>
+
 
       )
   }
