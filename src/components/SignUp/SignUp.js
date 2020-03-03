@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-class SignUp extends Component {
+class Signup extends Component {
   state = {
     username: '',
     email: '',
@@ -23,9 +23,8 @@ class SignUp extends Component {
       .post(`http://localhost:4000/api/v1/auth/signup`, this.state, {
       })
       .then(res => {
-        console.log('LOOLLLOLOLO:', res)
-        // body: { email: '', password: '' }
-        // localStorage.setItem({jwt: res.jwt});
+        let jwt = res.data.jwt
+        localStorage.setItem('jwt',jwt);
       })
       .catch(err => console.log(err.res));
   };
@@ -64,4 +63,4 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+export default Signup;
