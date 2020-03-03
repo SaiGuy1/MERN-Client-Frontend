@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
-class Login extends Component {
+class Loginn extends Component {
   state = {
     email: '',
     password: ''
@@ -58,4 +58,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default Loginn;
