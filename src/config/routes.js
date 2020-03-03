@@ -1,9 +1,9 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import SignUp from '../components/Signup/SignUp.js';
-import Login from './components/Login/Login.js';
-import Nav from './components/Nav/Nav.js';
-import Profile from './components/Profile/Profile.js';
+import SignUp from '../components/Signup/Signup';
+import Login from './components/Login/Login';
+import Nav from './components/Nav/Nav';
+import Profile from './components/Profile/Profile';
 
 export default ({ currentUser, setCurrentUser }) => (
   <Switch>
@@ -11,7 +11,7 @@ export default ({ currentUser, setCurrentUser }) => (
     <Route path='/Login' component={Login} />
     <Route path='/SignUp' component={SignUp} />
     <Route
-      path='/LogIn'
+      path='/Login'
       render={() => (
         <Login currentUser={currentUser} setCurrentUser={setCurrentUser} />
       )}
