@@ -39,18 +39,16 @@ class Signup extends Component {
     return (
       <>
       <div>
-          <h2>Sign Up</h2>
-
           <form>
           <div className="form-group">
-              {/* <label htmlFor='username'>User Name</label> */}
+              <label htmlFor='username'>User Name</label>
               <input type='text' name='username' onChange={this.handleChange} aria-describedby="usernameHelp" placeholder="Enter UserName" />
               <small id="usernameHelp" class="form-text text-muted">Required - must be at least 4 characters</small>
           </div>
 
           <div className="form-group">
               <label htmlFor='email'>Email</label>
-              <input type='text' name='email' onChange={this.handleChange} placeholder="Enter UserName" />
+              <input type='text' name='email' onChange={this.handleChange} placeholder="Enter Email" />
           </div>
 
           <div className="form-group">
@@ -58,7 +56,6 @@ class Signup extends Component {
               <input type='password' name='password' onChange={this.handleChange} />
           </div>
             <button className='btn btn-primary float-right mb-5' value='Submit' type='submit' onClick={this.handleSubmit}>Signup</button>
-         
           </form>
     </div>
     </>

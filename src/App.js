@@ -7,8 +7,10 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  // Link
 } from "react-router-dom";
+import HeroCarousel from './components/Carousel/Carousel';
+import Description from './components/Description/Description';
 
 class App extends Component {
 
@@ -32,6 +34,8 @@ class App extends Component {
           <Profile />
           </Route>
         </Switch>
+        <HeroCarousel />
+        <Description />
       </Router>
   
     );
