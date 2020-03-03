@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'react-bootstrap/Modal';
-import { NavLink, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Login from '../Login/Login';
 import Signup from '../Signup/Signup';
 import './Navigation.css';
@@ -82,7 +82,7 @@ class Navigation extends React.Component {
             {this.state.islogin ? (<><li className="nav-item active">
         <Link className="nav-link" to='/profile'>Profile</Link>
       </li><li className="nav-item active">
-        <a className="nav-link" href="#" onClick={this.handleLogout}>Logout</a>
+        <a className="nav-link" href="/" onClick={this.handleLogout}>Logout</a>
       </li></>) : (<><li className="nav-item active">
               <a className="nav-link" href="#" id="Login" bsStyle="primary" bsSize="large" onClick={this.handleLoginShow}>Log in</a>
               <Modal show={this.state.loginshow} onHide={this.handleLoginClose}>
