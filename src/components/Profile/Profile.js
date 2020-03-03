@@ -40,8 +40,7 @@ class Profile extends Component {
   handleChange = event => {
       let value = event.target.value;
       this.setState({
-        email: value
-
+        email: value,
       });
 
   }
@@ -92,7 +91,7 @@ class Profile extends Component {
   </p>
   <div>
       Email: {this.state.email}
-      <button class="edit" onClick={this.changeInput}> Edit Info </button>
+      <button className="edit" onClick={this.changeInput}> Edit Info </button>
       <form id="EditInfo" style={{display: "none"}}>
       <div>
           <label htmlFor='email'>New Email</label>
