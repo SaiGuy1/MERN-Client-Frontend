@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
-class LogIn extends Component {
+class Login extends Component {
   state = {
     email: '',
     password: ''
@@ -25,8 +25,8 @@ class LogIn extends Component {
         // stores token into local storage
         localStorage.setItem('jwt', res.data.jwt);
         console.log(localStorage.getItem('jwt'))
-        // this.setCurrentUser(res.data.data);
-        this.props.history.push('/profile');
+        window.location='/profile';
+        // this.props.history.push('/profile');
       })
       .catch(err => console.log(err.response));
   };
@@ -58,4 +58,4 @@ class LogIn extends Component {
   }
 }
 
-export default LogIn;
+export default Login;
