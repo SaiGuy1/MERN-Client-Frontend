@@ -113,22 +113,22 @@ console.log('in render', this.state.userData)
           <input type='username' name='username'  value={this.state.userData.username} onChange={this.handleUserNameChange} />
       </div>
       <div>
-      <select onChange={this.handleCity.bind(this)}>
-      {
-      this.state.cities.map(city => {
-        // console.log(city)
-        // console.log('incity userdata',this.state.userData);
-        if (!this.state.userData.location) {
-          // console.log('no location')
-          return <option key={city._id} value={city._id}>{city.city}</option>
-        } else {
-          // console.log('yes location')
-          var selected = (city._id === this.state.userData.location._id) ? 'selected' : 'false';
-          return <option key={city._id} value={city._id} selected={selected}>{city.city}</option>
+        <select onChange={this.handleCity.bind(this)}>
+        {
+          this.state.cities.map(city => {
+          // console.log(city)
+          // console.log('incity userdata',this.state.userData);
+            if (!this.state.userData.location) {
+            // console.log('no location')
+              return <option key={city._id} value={city._id}>{city.city}</option>
+            } else {
+              // console.log('yes location')
+              var selected = (city._id === this.state.userData.location._id) ? 'selected' : 'false';
+              return <option key={city._id} value={city._id} selected={selected}>{city.city}</option>
+            }
+          })
         }
-      })
-    }
-    </select>
+        </select>
       </div>
       <div>
         <input value='Submit' type='submit' onClick={this.handleSubmit} />
