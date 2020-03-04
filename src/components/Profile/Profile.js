@@ -95,7 +95,11 @@ class Profile extends Component {
 //alert(this.state.cityVal)
 console.log('in render', this.state.userData)
       return(
-<div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md mt-5 mr-auto" >
+
   <h2>Hello</h2>
   <p>
       Username: {this.state.userData.username}
@@ -140,8 +144,11 @@ console.log('in render', this.state.userData)
   <p>
       Join Date: {this.state.joinDate}
   </p>
-  <div>
+</div>
+  <div class="col-md ml-auto " >
     <PostList />
+  </div>
+
   </div>
   </div>
 

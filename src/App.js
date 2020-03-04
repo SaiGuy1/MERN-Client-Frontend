@@ -12,8 +12,6 @@ import {
 } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import Navigation from './components/Navigation/Navigation';
-import Profile from './components/Profile/Profile';
 import CityPosts from './components/Landing/CityPosts/CityPosts';
 import Landing from './components/Landing/Landing';
 import { withRouter } from 'react-router-dom';
@@ -52,7 +50,7 @@ class App extends Component {
         <Switch>
           <Route path="/profile" component={Profile} />
           <Route path="/postdetail/:id" component={PostDetail} />
-          <Route path="/profile">
+          <Route path="/profile" />
           <Route path="/" render={() => (
         <Landing isLogin={this.state.isLogin} setCurrentUser={this.setCurrentUser} />
       )}/>
@@ -70,4 +68,4 @@ class App extends Component {
   }
 }
 
-export default withRouter(App);
+export default App;
