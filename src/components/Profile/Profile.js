@@ -7,10 +7,11 @@ class Profile extends Component {
   state = {
     
       city: '',
-      userData: {location:"aaa"},
+      userData: {},
       cities: [],
       email: '',
-      joinDate: ''
+      joinDate: '',
+      editshow: ''
   }
 
   componentDidMount = () => {
@@ -62,29 +63,36 @@ class Profile extends Component {
   handleSubmit = event => {
     event.preventDefault();
     console.log('bodytosend',this.state.userData);
+    document.getElementById('EditInfo').style.display = "none";
     
     axios.put(`http://localhost:4000/api/v1/profile/update`, this.state.userData , {headers: {"authorization": `bearer ${localStorage.getItem('jwt')}`}})
       .then(res => {
-        console.log('updateUser', res.data.data.updatedUser)
-
+        console.log('updateUser')
+        console.log(res)
+        console.log(res.data)
         this.setState({
-          userData:res.data.data.updatedUser
+          userData:res.data
         })
       })
       .catch(err => console.log(err.res));
+      
   };
 
-  changeInput = () => {
+  OpenEdit = () => {
     document.getElementById('EditInfo').style.display = "block";
   }
 
 
   handleCity = (e) => {
     console.log(e.target.value)
+    let index=e.nativeEvent.target.selectedIndex;
     this.setState({
       userData:{
         ...this.state.userData,
-        location: e.target.value
+        location: {
+          _id:e.target.value,
+          city: e.nativeEvent.target[index].text
+        }
       }
     })
   }
@@ -94,15 +102,15 @@ class Profile extends Component {
 console.log('in render', this.state.userData)
       return(
 <div>
-  <h2>Hello</h2>
+  
   <p>
       Username: {this.state.userData.username}
   </p>
-  {(this.state.userDate || this.state.userData.location) && <p> City: {this.state.userData.location.city}
+  {(this.state.userData && this.state.userData.location) && <p> City: {this.state.userData.location.city}
   </p>}
   <div>
       Email: {this.state.userData.email}
-      <button className="edit" onClick={this.changeInput}> Edit Info </button>
+      <button className="edit btn btn-primary" onClick={this.OpenEdit}> Edit Info </button>
       <form id="EditInfo" style={{display: "none"}}>
       <div>
           <label htmlFor='email'>New Email</label>
@@ -120,18 +128,19 @@ console.log('in render', this.state.userData)
         // console.log('incity userdata',this.state.userData);
         if (!this.state.userData.location) {
           // console.log('no location')
-          return <option key={city._id} value={city._id}>{city.city}</option>
+          return <option key={city._id} value={city._id} >{city.city}</option>
         } else {
           // console.log('yes location')
-          var selected = (city._id === this.state.userData.location._id) ? 'selected' : 'false';
-          return <option key={city._id} value={city._id} selected={selected}>{city.city}</option>
+          var selected = (city._id === this.state.userData.location._id) ? 'true' : '';
+          return <option key={city._id} value={city._id} selected={selected} >{city.city}</option>
         }
       })
     }
     </select>
+  
       </div>
       <div>
-        <input value='Submit' type='submit' onClick={this.handleSubmit} />
+        <input className="btn btn-primary" value='Submit' type='submit' onClick={this.handleSubmit} />
       </div>
       </form>
   </div>

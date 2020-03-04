@@ -2,11 +2,15 @@ h3 {
   justify-content: center;
 }
 
-.card {
+/* .card {
   width: 20rem;
-}
+} */
 
 .title {
   font-size: 2em;
   text-align: center;
+}
+
+.container {
+  padding:0;
 }
