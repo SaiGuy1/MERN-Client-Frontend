@@ -24,8 +24,9 @@ class Signup extends Component {
       .post(`http://localhost:4000/api/v1/auth/signup`, this.state, {
       })
       .then(res => {
-        let jwt = res.data.jwt
-        localStorage.setItem('jwt',jwt);
+        let jwt = res.data.jwt;
+        this.props.setCurrentUser(jwt)
+        
         window.location='/profile';
         // this.props.history.push('/profile');
         

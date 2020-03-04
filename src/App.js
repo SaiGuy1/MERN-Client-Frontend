@@ -9,14 +9,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Navigation from './components/Navigation/Navigation';
 import Profile from './components/Profile/Profile';
-import CityPosts from './components/Landing/CityPosts/CityPosts';
+
 import Landing from './components/Landing/Landing';
-import { withRouter } from 'react-router-dom';
+
 
 class App extends Component {
 
   state = {
-   isLogin: false
+   isLogin: localStorage.getItem('jwt')
   }
 
   componentDidMount = () => {
@@ -24,9 +24,10 @@ class App extends Component {
     
   }
   setCurrentUser = jwt => {
+    console.log('go to App and set jwt')
     if (jwt) {
       this.setState({
-        islogin: true
+        isLogin: true
       })
       localStorage.setItem('jwt', jwt)
     }
@@ -47,13 +48,8 @@ class App extends Component {
         <Switch>
           <Route path="/profile" component={Profile} />
           
-          <Route path="/" render={() => (
-        <Landing isLogin={this.state.isLogin} setCurrentUser={this.setCurrentUser} />
-      )}/>
+          <Route exect path="/" render={() => <Landing isLogin={this.state.isLogin} setCurrentUser={this.setCurrentUser} />}/>
           
-          <Route path="/citypost">
-          <CityPosts />
-          </Route>
         
          
         </Switch>
@@ -64,4 +60,4 @@ class App extends Component {
   }
 }
 
-export default withRouter(App);
+export default App;

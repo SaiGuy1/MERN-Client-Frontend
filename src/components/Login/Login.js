@@ -3,6 +3,11 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 class Login extends Component {
+  constructor(props, context){
+    super(props, context);
+
+
+  }
   state = {
     email: '',
     password: ''
@@ -23,10 +28,11 @@ class Login extends Component {
       .then(res => {
         console.log(res);
         // stores token into local storage
-        localStorage.setItem('jwt', res.data.jwt);
-        console.log(localStorage.getItem('jwt'))
+        let jwt = res.data.jwt;
+        this.props.setCurrentUser(jwt)
+        
         window.location='/profile';
-        // this.props.history.push('/profile');
+       
       })
       .catch(err => console.log(err.response));
   };
