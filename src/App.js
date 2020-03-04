@@ -1,45 +1,67 @@
 import React, { Component } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
-import Navigation from './components/Navigation/Navigation';
-import Profile from './components/Profile/Profile';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   // Link
 } from "react-router-dom";
-import HeroCarousel from './components/Carousel/Carousel';
-import Description from './components/Description/Description';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
+import Navigation from './components/Navigation/Navigation';
+import Profile from './components/Profile/Profile';
+import CityPosts from './components/Landing/CityPosts/CityPosts';
+import Landing from './components/Landing/Landing';
+import { withRouter } from 'react-router-dom';
 
 class App extends Component {
 
   state = {
-   
+   isLogin: false
   }
 
   componentDidMount = () => {
-  
+    this.setCurrentUser(localStorage.getItem('jwt'))
+    
   }
-
+  setCurrentUser = jwt => {
+    if (jwt) {
+      this.setState({
+        islogin: true
+      })
+      localStorage.setItem('jwt', jwt)
+    }
+  }
+  handleLogout(){
+    localStorage.removeItem('jwt');
+    window.location='/';
+  }
+  
 
 
   render() {
     return (
       <Router>
     
-        <Navigation />
+        <Navigation isLogin={this.state.isLogin} setCurrentUser={this.setCurrentUser} handleLogout={this.handleLogout} />
+        
         <Switch>
-          <Route path="/profile">
-          <Profile />
+          <Route path="/profile" component={Profile} />
+          
+          <Route path="/" render={() => (
+        <Landing isLogin={this.state.isLogin} setCurrentUser={this.setCurrentUser} />
+      )}/>
+          
+          <Route path="/citypost">
+          <CityPosts />
           </Route>
+        
+         
         </Switch>
-        <HeroCarousel />
-        <Description />
+        
       </Router>
   
     );
   }
 }
 
-export default App;
+export default withRouter(App);
