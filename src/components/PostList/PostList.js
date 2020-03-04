@@ -56,7 +56,8 @@ class PostList extends Component {
       console.log(this.state.content);
       let posts=null;
       posts = this.state.content.map(post => {
-        return <Post key={post.id} post={post}/>
+        console.log(post._id)
+        return <Post key={post._id} post={post}/>
       })
       console.log(posts)
       return(
