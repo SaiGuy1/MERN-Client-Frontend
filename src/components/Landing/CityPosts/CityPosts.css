@@ -1,0 +1,5 @@
+.row div {
+  border:2px solid black;
+  height:80vh;
+  min-width: 25vw;
+}
