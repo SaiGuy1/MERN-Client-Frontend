@@ -1,7 +1,11 @@
 import React from "react";
 import Modal from 'react-bootstrap/Modal';
-
+import {  Form,
+          FormGroup,
+          FormControl,
+          FormLabel } from 'react-bootstrap';
 import { NavLink, Link } from 'react-router-dom';
+import CreatePost from '../../CreatePost/CreatePost'
 
 const post = (props) => {
   return(
