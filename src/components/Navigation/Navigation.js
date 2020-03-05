@@ -8,6 +8,8 @@ import './Navigation.css';
 class Navigation extends React.Component {
   constructor(props, context) {
     super(props, context);
+    
+   
 
     this.handleLoginShow = this.handleLoginShow.bind(this);
     this.handleLoginClose = this.handleLoginClose.bind(this);
@@ -16,17 +18,11 @@ class Navigation extends React.Component {
     this.state = {
       loginshow: false,
       signupshow:false,
-      islogin:false
     };
   }
 
   componentDidMount(){
-    let token = localStorage.getItem('jwt');
-    if (token) {
-      this.setState({
-        islogin: true
-      })
-    }
+  
   }
 
   // Handle OPEN and CLOSE of LOGIN and SIGNUP
@@ -60,15 +56,10 @@ class Navigation extends React.Component {
   }
 
 
-  handleLogout(){
-    localStorage.removeItem('jwt');
-    window.location='/';
-  }
-
   render() {
     //   NAVBAR and MODAL design
     return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <Link className="navbar-brand" to='/'>Wayfarer</Link>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
@@ -79,33 +70,33 @@ class Navigation extends React.Component {
 
           </ul>
           <ul className="navbar-nav ml-auto">
-            {this.state.islogin ? (<><li className="nav-item active">
+            {this.props.isLogin ? (<><li className="nav-item active">
         <Link className="nav-link" to='/profile'>Profile</Link>
       </li><li className="nav-item active">
-        <a className="nav-link" href="/" onClick={this.handleLogout}>Logout</a>
+        <a className="nav-link" href="/" onClick={this.props.handleLogout}>Logout</a>
       </li></>) : (<><li className="nav-item active">
-              <a className="nav-link" href="#" id="Login" bsStyle="primary" bsSize="large" onClick={this.handleLoginShow}>Log in</a>
+              <a className="nav-link" href="#" id="Login" bsstyle="primary" bssize="large" onClick={this.handleLoginShow}>Log in</a>
               <Modal show={this.state.loginshow} onHide={this.handleLoginClose}>
                 <Modal.Header closeButton>
                 <h2>Log In</h2>
                 </Modal.Header>
                 <Modal.Body>
-                  <Login />
+                  <Login setCurrentUser={this.props.setCurrentUser}/>
                   <hr />
-                  <a className="nav-link" href="#" id="Signup" bsStyle="primary" bsSize="large" onClick={this.handleSignupSwitch}>Need to sign up?</a>
+                  <a className="nav-link" href="#" id="Signup" bsstyle="primary" bssize="large" onClick={this.handleSignupSwitch}>Need to sign up?</a>
                 </Modal.Body>
               </Modal>
             </li>
             <li className="nav-item active">
-              <a className="nav-link" href="#" id="Signup" bsStyle="primary" bsSize="large" onClick={this.handleSignupShow}>Sign up</a>
+              <a className="nav-link" href="#" id="Signup" bsstyle="primary" bssize="large" onClick={this.handleSignupShow}>Sign up</a>
               <Modal show={this.state.signupshow} onHide={this.handleSignupClose}>
                 <Modal.Header closeButton>
                 <h2>Sign Up</h2>
                 </Modal.Header>
                 <Modal.Body>
-                  <Signup />
+                  <Signup setCurrentUser={this.props.setCurrentUser}/>
                   <hr />
-                  <a className="nav-link" href="#" id="Login" bsStyle="primary" bsSize="large" onClick={this.handleLoginSwitch}>Need to log in?</a>
+                  <a className="nav-link" href="#" id="Login" bsstyle="primary" bssize="large" onClick={this.handleLoginSwitch}>Need to log in?</a>
                 </Modal.Body>
               </Modal>
             </li></>)}

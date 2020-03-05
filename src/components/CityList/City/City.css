@@ -1,0 +1,15 @@
+.city-card{
+  cursor: pointer;
+
+}
+.city-card:hover {
+  background-color: antiquewhite;
+}
+
+.city-img {
+  height:5rem;
+}
+
+.city-name {
+  margin: 1.8rem 0;
+}

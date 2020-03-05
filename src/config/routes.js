@@ -5,6 +5,5 @@ export default ({ currentUser, setCurrentUser }) => (
   <Switch>
     <Route exact path='/' component={Home} />
 
-
   </Switch>
 );
