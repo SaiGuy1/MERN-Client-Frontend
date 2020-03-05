@@ -8,7 +8,6 @@ import './Navigation.css';
 class Navigation extends React.Component {
   constructor(props, context) {
     super(props, context);
-    console.log(this.props)
     
    
 
@@ -19,7 +18,6 @@ class Navigation extends React.Component {
     this.state = {
       loginshow: false,
       signupshow:false,
-      islogin:false
     };
   }
 
