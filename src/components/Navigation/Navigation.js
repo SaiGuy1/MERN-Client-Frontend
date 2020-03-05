@@ -24,12 +24,7 @@ class Navigation extends React.Component {
   }
 
   componentDidMount(){
-    let token = localStorage.getItem('jwt');
-    if (token) {
-      this.setState({
-        islogin: true
-      })
-    } 
+ 
   }
   
   // Handle OPEN and CLOSE of LOGIN and SIGNUP
@@ -74,7 +69,7 @@ class Navigation extends React.Component {
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
-            
+
           </ul>
           <ul className="navbar-nav ml-auto">
             {this.props.isLogin ? (<><li className="nav-item active">
@@ -107,7 +102,7 @@ class Navigation extends React.Component {
                 </Modal.Body>
               </Modal>
             </li></>)}
-            
+
           </ul>
         </div>
       </nav>
@@ -123,6 +118,3 @@ class Navigation extends React.Component {
 
 
 export default Navigation;
-
-
-

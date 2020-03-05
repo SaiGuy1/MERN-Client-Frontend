@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Navigation from './components/Navigation/Navigation';
 import Profile from './components/Profile/Profile';
-
+import PostDetail from './components/PostDetail/PostDetail';
 import Landing from './components/Landing/Landing';
 
 
@@ -21,7 +21,7 @@ class App extends Component {
 
   componentDidMount = () => {
     this.setCurrentUser(localStorage.getItem('jwt'))
-    
+
   }
   setCurrentUser = jwt => {
     console.log('go to App and set jwt')
@@ -36,15 +36,15 @@ class App extends Component {
     localStorage.removeItem('jwt');
     window.location='/';
   }
-  
+
 
 
   render() {
     return (
       <Router>
-    
+
         <Navigation isLogin={this.state.isLogin} setCurrentUser={this.setCurrentUser} handleLogout={this.handleLogout} />
-        
+
         <Switch>
           <Route path="/profile" component={Profile} />
           
@@ -53,9 +53,9 @@ class App extends Component {
         
          
         </Switch>
-        
+
       </Router>
-  
+
     );
   }
 }
