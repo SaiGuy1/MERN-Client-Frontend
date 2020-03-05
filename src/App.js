@@ -47,7 +47,7 @@ class App extends Component {
       <Router>
 
         <Navigation isLogin={this.state.isLogin} setCurrentUser={this.setCurrentUser} handleLogout={this.handleLogout} />
-
+        
         <Switch>
           <Route path="/profile" component={Profile} />
           <Route path="/postdetail/:id" component={PostDetail} />

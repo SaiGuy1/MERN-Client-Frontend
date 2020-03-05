@@ -6,7 +6,7 @@ import { NavLink, Link } from 'react-router-dom';
 const post = (props) => {
   return(
     <>
-    <div class="card mb-3 mt-5 ml-3 mr-2 shadow p-3 mb-5 bg-white rounded" style={{minWidth: 30 + 'vw'}}>
+    <div class="card mb-3  shadow p-3 bg-white rounded" style={{minWidth: 30 + 'vw'}}>
       <div class="row no-gutters">
       <div class="col-lg-4">
         <img src={"https://i.ibb.co/M87rPqy/joseph-barrientos-Ji-G7-Bu1-Mo-M-unsplash.jpg"} class="card-img" />
@@ -25,8 +25,8 @@ const post = (props) => {
       </div>
         <div class="col-md-8">
           <div class="card-body">
-            <h5 class="card-title">{props.post.city}</h5>
-            <h5 class="card-title">{props.post._id}</h5>
+            <h5 class="card-title">{props.post.location.city}</h5>
+            <h5 class="card-title">{props.post.title}</h5>
             <p class="card-text">{props.post.content}</p>
             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
           </div>
