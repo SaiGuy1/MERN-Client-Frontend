@@ -6,7 +6,7 @@ import {  Form,
           Col,
           FormLabel,
           FormControl,
-          Button } 
+          Button }
           from 'react-bootstrap'
 
 class Signup extends Component {
@@ -35,7 +35,7 @@ class Signup extends Component {
         localStorage.setItem('jwt',jwt);
         window.location='/profile';
         // this.props.history.push('/profile');
-        
+
       })
       .catch(err => console.log(err.res));
   };
@@ -81,7 +81,7 @@ class Signup extends Component {
           </Col>
         </FormGroup>
       </Form>
-        
+
         {/* Old LOGIN form  to be DEPRECATED*/}
         {/* <form>
         <div className="form-group">

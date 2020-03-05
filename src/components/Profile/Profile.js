@@ -1,12 +1,12 @@
 import React, {Component} from "react";
-
 import axios from "axios";
+import PostList from '../PostList/PostList';
+
 
 class Profile extends Component {
 
   state = {
-    
-      city: '',
+      city: [],
       userData: {location:"aaa"},
       cities: [],
       email: '',
@@ -57,12 +57,12 @@ class Profile extends Component {
         username: value
       }
     });
-}
+  }
 
   handleSubmit = event => {
     event.preventDefault();
     console.log('bodytosend',this.state.userData);
-    
+
     axios.put(`http://localhost:4000/api/v1/profile/update`, this.state.userData , {headers: {"authorization": `bearer ${localStorage.getItem('jwt')}`}})
       .then(res => {
         console.log('updateUser', res.data.data.updatedUser)
@@ -91,56 +91,63 @@ class Profile extends Component {
 
   render() {
 //alert(this.state.cityVal)
-console.log('in render', this.state.userData)
-      return(
-<div>
-  <h2>Hello</h2>
-  <p>
-      Username: {this.state.userData.username}
-  </p>
-  {(this.state.userDate || this.state.userData.location) && <p> City: {this.state.userData.location.city}
-  </p>}
-  <div>
-      Email: {this.state.userData.email}
-      <button className="edit" onClick={this.changeInput}> Edit Info </button>
-      <form id="EditInfo" style={{display: "none"}}>
-      <div>
-          <label htmlFor='email'>New Email</label>
-          <input type='email' name='email' value={this.state.userData.email} onChange={this.handleEmailChange} />
-      </div>
-      <div>
-          <label htmlFor='username'>New Username</label>
-          <input type='username' name='username'  value={this.state.userData.username} onChange={this.handleUserNameChange} />
-      </div>
-      <div>
-        <select onChange={this.handleCity.bind(this)}>
-        {
-          this.state.cities.map(city => {
-          // console.log(city)
-          // console.log('incity userdata',this.state.userData);
-            if (!this.state.userData.location) {
-            // console.log('no location')
-              return <option key={city._id} value={city._id}>{city.city}</option>
-            } else {
-              // console.log('yes location')
-              var selected = (city._id === this.state.userData.location._id) ? 'selected' : 'false';
-              return <option key={city._id} value={city._id} selected={selected}>{city.city}</option>
-            }
-          })
-        }
-        </select>
-      </div>
-      <div>
-        <input value='Submit' type='submit' onClick={this.handleSubmit} />
-      </div>
-      </form>
-  </div>
-  <p>
-      Join Date: {this.state.joinDate}
-  </p>
-  </div>
+    console.log('in render', this.state.userData)
+    return(
 
-      )
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md mt-5 mr-auto" >
+            <h2>Hello</h2>
+            <p>
+              Username: {this.state.userData.username}
+            </p>
+              {(this.state.userDate || this.state.userData.location) && <p> City: {this.state.userData.location.city}
+            </p>}
+            <div>
+              Email: {this.state.userData.email}
+              <button className="edit" onClick={this.changeInput}> Edit Info </button>
+              <form id="EditInfo" style={{display: "none"}}>
+              <div>
+                <label htmlFor='email'>New Email</label>
+                <input type='email' name='email' value={this.state.userData.email} onChange={this.handleEmailChange} />          </div>
+                <div>
+                  <label htmlFor='username'>New Username</label>
+                  <input type='username' name='username'  value={this.state.userData.username} onChange={this.handleUserNameChange} />
+                </div>
+                <div>
+                  <select onChange={this.handleCity.bind(this)}>
+                    {
+                      this.state.cities.map(city => {
+                      // console.log(city)
+                      // console.log('incity userdata',this.state.userData);
+                        if (!this.state.userData.location) {
+                        // console.log('no location')
+                          return <option key={city._id} value={city._id}>{city.city}</option>
+                        } else {
+                          // console.log('yes location')
+                          var selected = (city._id === this.state.userData.location._id) ? 'selected' : 'false';
+                          return <option key={city._id} value={city._id} selected={selected}>{city.city}</option>
+                        }
+                      })
+                    }
+                  </select>
+                </div>
+                <div>
+                  <input value='Submit' type='submit' onClick={this.handleSubmit} />
+                </div>
+              </form>
+            </div>
+            <p>
+                Join Date: {this.state.joinDate}
+            </p>
+          </div>
+          <div class="col-md ml-auto " >
+            <PostList />
+          </div>
+
+        </div>
+      </div>
+    )
   }
 }
 
