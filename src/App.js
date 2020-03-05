@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import Navigation from './components/Navigation/Navigation';
-import Profile from './components/Profile/Profile';
-import PostDetail from './components/PostDetail/PostDetail';
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,14 +9,17 @@ import {
 } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import Navigation from './components/Navigation/Navigation';
+import Profile from './components/Profile/Profile';
+import PostDetail from './components/PostDetail/PostDetail';
 import CityPosts from './components/Landing/CityPosts/CityPosts';
 import Landing from './components/Landing/Landing';
-import { withRouter } from 'react-router-dom';
+
 
 class App extends Component {
 
   state = {
-   isLogin: false
+   isLogin: localStorage.getItem('jwt')
   }
 
   componentDidMount = () => {
@@ -27,9 +27,10 @@ class App extends Component {
 
   }
   setCurrentUser = jwt => {
+    console.log('go to App and set jwt')
     if (jwt) {
       this.setState({
-        islogin: true
+        isLogin: true
       })
       localStorage.setItem('jwt', jwt)
     }
@@ -49,15 +50,13 @@ class App extends Component {
 
         <Switch>
           <Route path="/profile" component={Profile} />
+          
+          <Route exect path="/" render={() => <Landing isLogin={this.state.isLogin} setCurrentUser={this.setCurrentUser} />}/>
+          
+        
+         
           <Route path="/postdetail/:id" component={PostDetail} />
-          <Route path="/profile" />
-          <Route path="/" render={() => (
-        <Landing isLogin={this.state.isLogin} setCurrentUser={this.setCurrentUser} />
-      )}/>
-
-          <Route path="/citypost">
-          <CityPosts />
-          </Route>
+         
 
 
         </Switch>

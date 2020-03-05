@@ -1,53 +1,51 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import axios from "axios";
+import './Profile.css'
 import PostList from '../PostList/PostList';
 
 
 class Profile extends Component {
 
   state = {
-      city: [],
-      userData: {location:"aaa"},
-      cities: [],
-      email: '',
-      joinDate: ''
+    city: '',
+    userData: {},
+    cities: [],
+    email: '',
+    joinDate: '',
   }
 
   componentDidMount = () => {
     console.log("WOWZA")
-    axios.get(`http://localhost:4000/api/v1/profile`,{headers: {"authorization": `bearer ${localStorage.getItem('jwt')}`}})
-      .then(res=>{
-        console.log(res.data.User);
+    axios.get(`http://localhost:4000/api/v1/profile`, { headers: { "authorization": `bearer ${localStorage.getItem('jwt')}` } })
+      .then(res => {
+        console.log('res.data.User',res.data.User);
         this.setState({
           joinDate: res.data.User.createdAt
         })
         delete res.data.User.createdAt;
+        console.log('res.data.User',res.data.User);
         this.setState({
-            userData: res.data.User,
+          userData: res.data.User,
         })
       })
-      .catch(err=>console.log(err))
-
-      this.setState({
-          cities: ["London","San Francisco","Paris"]
-      })
+      .catch(err => console.log(err))
 
     axios.get(`http://localhost:4000/api/v1/location`)
-      .then(res=> {
+      .then(res => {
         console.log(res.data.AllLocation);
         this.setState({
-          cities:res.data.AllLocation
+          cities: res.data.AllLocation
         })
       })
   }
   handleEmailChange = event => {
-      let value = event.target.value;
-      this.setState({
-        userData: {
-          ...this.state.userData,
-          email: value
-        }
-      });
+    let value = event.target.value;
+    this.setState({
+      userData: {
+        ...this.state.userData,
+        email: value
+      }
+    });
   }
   handleUserNameChange = event => {
     let value = event.target.value;
@@ -61,93 +59,104 @@ class Profile extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log('bodytosend',this.state.userData);
+    console.log('bodytosend', this.state.userData);
+    document.getElementById('savebtn').style.display = "none";
+    document.getElementById('editbtn').style.display = ""
+    document.getElementById('cancelbtn').style.display = "none"
+    document.getElementById('location').disabled = "null";
+    document.getElementById('username').disabled = "null";
 
-    axios.put(`http://localhost:4000/api/v1/profile/update`, this.state.userData , {headers: {"authorization": `bearer ${localStorage.getItem('jwt')}`}})
+    axios.put(`http://localhost:4000/api/v1/profile/update`, this.state.userData, { headers: { "authorization": `bearer ${localStorage.getItem('jwt')}` } })
       .then(res => {
-        console.log('updateUser', res.data.data.updatedUser)
-
+        console.log('updateUser')
+        console.log(res)
+        console.log(res.data)
         this.setState({
-          userData:res.data.data.updatedUser
+          userData: res.data
         })
       })
       .catch(err => console.log(err.res));
+
   };
 
-  changeInput = () => {
-    document.getElementById('EditInfo').style.display = "block";
+  toggleEdit = (event) => {
+    event.preventDefault();
+    document.getElementById('savebtn').style.display = "";
+    document.getElementById('editbtn').style.display = "none"
+    document.getElementById('cancelbtn').style.display = ""
+    document.getElementById('location').disabled = false;
+    document.getElementById('username').disabled = false;
   }
-
 
   handleCity = (e) => {
     console.log(e.target.value)
+    let index = e.nativeEvent.target.selectedIndex;
     this.setState({
-      userData:{
+      userData: {
         ...this.state.userData,
-        location: e.target.value
+        location: {
+          _id: e.target.value,
+          city: e.nativeEvent.target[index].text
+        }
       }
     })
   }
 
   render() {
-//alert(this.state.cityVal)
+    //alert(this.state.cityVal)
     console.log('in render', this.state.userData)
-    return(
-
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md mt-5 mr-auto" >
-            <h2>Hello</h2>
-            <p>
-              Username: {this.state.userData.username}
-            </p>
-              {(this.state.userDate || this.state.userData.location) && <p> City: {this.state.userData.location.city}
-            </p>}
-            <div>
-              Email: {this.state.userData.email}
-              <button className="edit" onClick={this.changeInput}> Edit Info </button>
-              <form id="EditInfo" style={{display: "none"}}>
-              <div>
-                <label htmlFor='email'>New Email</label>
-                <input type='email' name='email' value={this.state.userData.email} onChange={this.handleEmailChange} />          </div>
-                <div>
-                  <label htmlFor='username'>New Username</label>
-                  <input type='username' name='username'  value={this.state.userData.username} onChange={this.handleUserNameChange} />
+    return (
+      <div>
+        <div className="container">
+          <div className="row mt-5">
+            <div className="col-sm-3">
+              <form>
+                <div ><img src="https://i.imgur.com/cG6YD9S.jpg" /></div>
+                <div className="form-group">
+                  <label for="username">Username</label>
+                  <input type="username" className="form-control" id="username" aria-describedby="usernameHelp" placeholder="Enter username" value={this.state.userData.username} disabled onChange={this.handleUserNameChange} />
                 </div>
-                <div>
-                  <select onChange={this.handleCity.bind(this)}>
-                    {
-                      this.state.cities.map(city => {
-                      // console.log(city)
-                      // console.log('incity userdata',this.state.userData);
+                <div className="form-group">
+                  <label for="location">Location</label>
+                  <select id="location" name="location" class="form-control" onChange={this.handleCity.bind(this)} disabled>
+                    {this.state.cities.map(city => {
+                        // console.log(city)
+                        // console.log('incity userdata',this.state.userData);
                         if (!this.state.userData.location) {
-                        // console.log('no location')
-                          return <option key={city._id} value={city._id}>{city.city}</option>
+                          // console.log('no location')
+                          return <option key={city._id} value={city._id} >{city.city}</option>
                         } else {
                           // console.log('yes location')
-                          var selected = (city._id === this.state.userData.location._id) ? 'selected' : 'false';
-                          return <option key={city._id} value={city._id} selected={selected}>{city.city}</option>
+                          var selected = (city._id === this.state.userData.location._id) ? 'true' : '';
+                          return <option key={city._id} value={city._id} selected={selected} >{city.city}</option>
                         }
                       })
                     }
                   </select>
                 </div>
-                <div>
-                  <input value='Submit' type='submit' onClick={this.handleSubmit} />
+                <div className="form-group">
+                  <button id="editbtn" className="edit btn btn-primary " onClick={this.toggleEdit}> Edit Info </button>
+                  <button id="savebtn" style={{ display: "none" }} type="submit" className="btn btn-primary" onClick={this.handleSubmit}>Save</button>
+                  <button id="cancelbtn" style={{ display: "none" }} className="edit btn btn-secondary" onClick={this.toggleEdit}> Cancel </button>
+                </div>
+                <div className="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" value={this.state.userData.email} disabled />
+                </div>
+                <div className="form-group">
+                  <label>Join Date</label>
+                  <input type="string" className="form-control" id="date" aria-describedby="dateHelp" placeholder="Enter date" value={this.state.joinDate} disabled />
                 </div>
               </form>
             </div>
-            <p>
-                Join Date: {this.state.joinDate}
-            </p>
+            <div className="col-sm-9">
+              <h2 className="ml-4">Personal Post</h2>
+              <PostList />
+            </div>
           </div>
-          <div class="col-md ml-auto " >
-            <PostList />
-          </div>
-
         </div>
       </div>
-    )
+    )  
   }
 }
 
