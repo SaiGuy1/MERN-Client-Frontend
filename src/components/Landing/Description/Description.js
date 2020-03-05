@@ -10,7 +10,7 @@ class Description extends React.Component {
           Wayfarer is...
           </p>
         </div>
-        <div className="container">
+        <div className="container descriptions">
         <div className="row">
           <div className="card col-sm-4" >
             <div className="card-body">
