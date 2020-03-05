@@ -49,7 +49,7 @@ class App extends Component {
         <Switch>
           <Route path="/profile" component={Profile} />
           <Route path="/postdetail/:id" component={PostDetail} />
-          // <Route exact path="/" render={() => <Landing isLogin={this.state.isLogin} setCurrentUser={this.setCurrentUser} />}/>
+          <Route exact path="/" render={() => <Landing isLogin={this.state.isLogin} setCurrentUser={this.setCurrentUser} />}/>
         </Switch>
       </>
     );
