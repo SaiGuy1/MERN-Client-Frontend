@@ -45,7 +45,7 @@ class PostDetail extends Component {
             <div class="col-md-8">
               <div class="card-body">
                 <h5 class="card-title">San Francisco</h5>
-                <p class="card-text">{this.props.match.params.content}</p>
+                <p class="card-text">{this.state.content}</p>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
               </div>
             </div>

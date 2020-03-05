@@ -5,6 +5,7 @@ import './Profile.css'
 
 import PostList from '../PostList/PostList';
 
+
 class Profile extends Component {
 
   state = {

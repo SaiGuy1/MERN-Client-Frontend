@@ -24,9 +24,9 @@ class Navigation extends React.Component {
   }
 
   componentDidMount(){
- 
-  }
   
+  }
+
   // Handle OPEN and CLOSE of LOGIN and SIGNUP
   handleLoginClose() {
     this.setState({ loginshow: false });
@@ -35,7 +35,7 @@ class Navigation extends React.Component {
   handleLoginShow() {
     this.setState({ loginshow: true });
   }
-  
+
   handleSignupClose() {
     this.setState({ signupshow: false });
   }
@@ -43,14 +43,14 @@ class Navigation extends React.Component {
   handleSignupShow() {
     this.setState({ signupshow: true });
   }
-  
+
   // SWITCHING between SIGNUP and LOGIN **WIP**
   handleLoginSwitch = () => {
     console.log('Switching...');
     this.handleSignupClose();
     this.handleLoginShow();
   }
-  
+
   handleSignupSwitch = () => {
     console.log('Switching...');
     this.handleLoginClose();

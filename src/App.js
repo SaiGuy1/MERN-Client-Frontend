@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,6 +12,7 @@ import './App.css';
 import Navigation from './components/Navigation/Navigation';
 import Profile from './components/Profile/Profile';
 import PostDetail from './components/PostDetail/PostDetail';
+import CityPosts from './components/Landing/CityPosts/CityPosts';
 import Landing from './components/Landing/Landing';
 
 
@@ -52,6 +55,10 @@ class App extends Component {
           
         
          
+          <Route path="/postdetail/:id" component={PostDetail} />
+         
+
+
         </Switch>
 
       </Router>
