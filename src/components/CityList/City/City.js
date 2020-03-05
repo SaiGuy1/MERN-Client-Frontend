@@ -2,12 +2,10 @@ import React from 'react';
 import './City.css'
 
 class City extends React.Component {
-  componentDidMount(){
-    console.log('City props',this.props)
-  }
+  
 render(){
   return(
-    <div className="card mt-2 city-card">
+    <div className="card mb-2 city-card" onClick={()=> this.props.handleCityClick(this.props.cityData._id)}>
       <div className="row">
       
         <div className="col-sm-5"><img className="city-img" src={this.props.cityData.img}/></div>
