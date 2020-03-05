@@ -20,7 +20,9 @@ const post = (props) => {
         </Link>
         <button type="edit-button" class="btn btn-outline-primary mt-1 btn-block" >Edit Post</button>
 
+
         <button type="delete-button" class="btn btn-outline-danger mt-1 btn-block" onClick={() => this.setState({ show: true })}>Delete Post</button>
+
 
       </div>
         <div class="col-md-8">
