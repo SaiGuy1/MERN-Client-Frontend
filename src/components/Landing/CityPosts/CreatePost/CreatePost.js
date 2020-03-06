@@ -57,6 +57,16 @@ class CreatePost extends React.Component {
       }
     });
   }
+
+  handleImg = event => {
+    let value = event.target.value;
+    this.setState({
+      userData: {
+        ...this.state.userData,
+        img: value
+      }
+    })
+  }
   handleSubmit = event => {
     event.preventDefault();
     console.log('Creating POST...');
@@ -105,11 +115,11 @@ class CreatePost extends React.Component {
           </FormGroup>
           {/* Add a PICTURE functionality */}
 
-          <div className="form-group">
-            <label for="exampleFormControlFile1">City Picture</label>
-            <input type="text" className="form-control-file" id="exampleFormControlFile1"/>
-            <small type="text" className="form-control-file" id="exampleFormControlFile1">please put your image url here!</small>
-          </div>
+          <FormGroup>
+            <FormLabel>City Picture</FormLabel>
+            <FormControl id="img" type="text" placeholder="photo url" onChange={this.handleImg}/>
+          </FormGroup>
+         
 
           <FormGroup>
             <Col smOffset={2} sm={10}>

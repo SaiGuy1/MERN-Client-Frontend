@@ -62,7 +62,7 @@ render(){
     <div className="card mt-4 mb-3 ml-5 shadow p-3 bg-white rounded" >
       <div className="row no-gutters">
       <div className="col-lg-4">
-        <img src={"https://i.ibb.co/tMG6d9p/images.jpg" } className="card-img" />
+        <img src={this.props.post ? this.props.post.img : "https://i.ibb.co/tMG6d9p/images.jpg" } className="card-img" />
         <Link to ={{
             pathname: '/postdetail/'+ this.props.post._id,
             state: {
@@ -78,8 +78,8 @@ render(){
       </div>
         <div className="col-md-8">
           <div className="card-body">
-            <h5 className="card-title">{this.props.post.location && this.props.post.location.city}</h5>
             <h3 className="card-title">{this.props.post.title}</h3>
+            <p className="text-muted">{this.props.post.location && this.props.post.location.city}, {this.props.post.location && this.props.post.location.country}</p>
             <p className="card-text">{this.props.post.content}</p>
             <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
           </div>
