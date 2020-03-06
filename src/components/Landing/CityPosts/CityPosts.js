@@ -24,8 +24,7 @@ class CityPost extends React.Component {
 
 //GET, all city , move from cityList
 componentDidMount(){
-  axios
-    .get('http://localhost:4000/api/v1/location')
+  axios.get('http://localhost:4000/api/v1/location')
     .then(res => {
       console.log(res.data)
       res.data.AllLocation.sort((a,b) => a.cityId - b.cityId)
