@@ -93,8 +93,10 @@ render(){
         <div className="pre-scrollable col-sm-8 card">
 
 
-          {this.state.currentCityPost.length == 0 ? <div>no post</div> :<><LocationInfo postLocation={this.state.currentCityPost[0].location}/><button className="btn btn-primary">Add new post</button>{this.displayCityPost(this.state.currentCityPost)}</>}
-        </div>
+
+                {/* eric end */}
+                  {this.state.currentCityPost.length == 0 ? <div>no post</div> :<><LocationInfo postLocation={this.state.currentCityPost[0].location}/><button className="btn btn-primary" onClick={this.handleShow}>Add new post</button>{this.displayCityPost(this.state.currentCityPost)}</>}
+                </div>
         {/* ------- */}
 
 
