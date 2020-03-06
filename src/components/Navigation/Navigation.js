@@ -8,8 +8,8 @@ import './Navigation.css';
 class Navigation extends React.Component {
   constructor(props, context) {
     super(props, context);
-    
-   
+
+
 
     this.handleLoginShow = this.handleLoginShow.bind(this);
     this.handleLoginClose = this.handleLoginClose.bind(this);
@@ -22,7 +22,7 @@ class Navigation extends React.Component {
   }
 
   componentDidMount(){
-  
+
   }
 
   // Handle OPEN and CLOSE of LOGIN and SIGNUP
