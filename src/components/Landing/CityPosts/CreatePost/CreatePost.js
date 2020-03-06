@@ -4,12 +4,13 @@ import axios from 'axios';
 import {  Form,
           FormGroup,
           FormControl,
-          FormLabel } from 'react-bootstrap';
+          FormLabel,Button } from 'react-bootstrap';
 
 class CreatePost extends React.Component {
 
   state = {
-    cities: []
+    cities: [],
+    newPost: {}
   }
 
   // AXIOS call for all CITIES
@@ -21,7 +22,23 @@ class CreatePost extends React.Component {
           cities:res.data.AllLocation
         })
       })
-    }
+      .catch(err => {
+        console.log(err)
+      })
+  }
+  handleSubmit(event){
+    event.preventDefault();
+    const token = localStorage.getItem('jwt')
+    console.log(token)
+    axios.post(`http://localhost:4000/api/v1/posts/create`, { headers: { "authorization": `bearer ${localStorage.getItem('jwt')}` } })
+      .then(res => {
+        console.log(res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
 
   render() {
     console.log('Creating new POST');
@@ -53,11 +70,16 @@ class CreatePost extends React.Component {
           </FormGroup>
 
           {/* Add a PICTURE functionality */}
-          <div class="form-group">
+          <div className="form-group">
             <label for="exampleFormControlFile1">City Picture</label>
-            <input type="file" class="form-control-file" id="exampleFormControlFile1"/>
+            <input type="text" className="form-control-file" id="exampleFormControlFile1"/>
+            <small type="text" className="form-control-file" id="exampleFormControlFile1">please put your image url here!</small>
           </div>
-
+          <FormGroup>
+                  
+                    <Button value='Submit' type='submit' onSubmit={this.handleSubmit} >Post</Button>
+                  
+                </FormGroup>
         </Form>
       </div>
       </>
