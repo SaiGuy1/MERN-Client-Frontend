@@ -93,7 +93,9 @@ render(){
 
 
                 {/* eric end */}
-                  {this.state.currentCityPost.length == 0 ? <div>no post</div> :<><LocationInfo postLocation={this.state.currentCityPost[0].location}/><button className="btn btn-primary" onClick={this.handleShow}>Add new post</button>{this.displayCityPost(this.state.currentCityPost)}</>}
+                  {this.state.currentCityPost.length == 0 ? <div>no post</div> :<><LocationInfo postLocation={this.state.currentCityPost[0].location}/>
+                  <button className="btn add-post" onClick={this.handleShow}>+</button>
+                  {this.displayCityPost(this.state.currentCityPost)}</>}
                 </div>
         {/* ------- */}
 
