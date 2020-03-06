@@ -5,5 +5,5 @@
 .pre-scrollable {
   max-height: 72vh;
   max-width: 60vw;
-  border:10px radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(70,252,209,1) 100%);
+  border:10px radial-gradient(circle, olivedrab 0%, rgba(70,252,209,1) 100%);
 }

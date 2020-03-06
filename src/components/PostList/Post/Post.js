@@ -79,7 +79,7 @@ render(){
       </div>
         <div class="col-md-8">
           <div class="card-body">
-            {<h5 class="card-title">{this.props.post.location.city}</h5>}
+            {<h5 class="card-title">{this.props.post.location && this.props.post.location.city}</h5>}
             {<h5 class="card-title">{this.props.post.title}</h5> }
             { <p class="card-text">{this.props.post.content}</p> }
             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>

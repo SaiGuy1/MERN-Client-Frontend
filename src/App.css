@@ -2,9 +2,29 @@ body {
   box-sizing: border-box;
   margin:0;
   padding:0;
+  background-image: linear-gradient(dodgerblue, powderblue);
 }
-header {
-  background-color: ;
+
+.btn {
+  background-color: yellowgreen;
+  border-color: olivedrab;
+}
+
+.add-post {
+  border-radius: 25px;
+  margin-left: 43vw;
+}
+
+.navbar {
+  background-color: olivedrab;
+}
+
+.navbar-brand {
+  color: white;
+}
+
+.navbar-toggler {
+  color: white;
 }
 
 .wayfarer-heading {
