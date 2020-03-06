@@ -12,7 +12,7 @@ class CityPost extends React.Component {
 
   constructor(props, context) {
     super(props, context);
-    
+
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
     // this.handleSignupShow = this.handleSignupShow.bind(this);
@@ -27,7 +27,7 @@ class CityPost extends React.Component {
 
 //GET, all city , move from cityList
 componentDidMount(){
-  axios 
+  axios
     .get('http://localhost:4000/api/v1/location')
     .then(res => {
       console.log(res.data)
@@ -86,23 +86,20 @@ displayCityPost = posts => {
 render(){
   return(
     <>
-    <div className="container citypostlist pt-5">
+    <div className="container  citypostlist pt-5">
       <div className="row">
-        {/* shelly */}
-      <div className="col-sm-4"><CityList displayLocation={this.displayLocation} cities={this.state.cities}/></div>
-       
-        <div className="col-sm-8 card">
-          {/* eric */}
-        <button onClick={this.handleShow}>
-          Create -- Will open createPost modal -- see wireframe
-        </button>
-        {/* eric end */}
+        <div className=" pre-scrollable col-sm-4">
+          <CityList displayLocation={this.displayLocation} cities={this.state.cities}/></div>
+        <div className="pre-scrollable col-sm-8 card">
 
-          {this.state.currentCityPost.length == 0 ? <div>no post</div> :<><LocationInfo postLocation={this.state.currentCityPost[0].location}/><button className="btn btn-primary">Add new post</button>{this.displayCityPost(this.state.currentCityPost)}</>}
-        </div>
+
+
+                {/* eric end */}
+                  {this.state.currentCityPost.length == 0 ? <div>no post</div> :<><LocationInfo postLocation={this.state.currentCityPost[0].location}/><button className="btn btn-primary" onClick={this.handleShow}>Add new post</button>{this.displayCityPost(this.state.currentCityPost)}</>}
+                </div>
         {/* ------- */}
 
-        
+
 
 
         {/* modal */}
@@ -115,21 +112,21 @@ render(){
               <hr />
             </Modal.Body>
           </Modal>
-        
+
         {/* <div className="">
           <button>Delete -- will open confirm modal to delete post</button>
           <button>edit -- will open edit modal to delete post</button>
         </div> */}
-        
 
-        
-        
+
+
+
       </div>
     </div>
     </>
    )
 }
-  
+
 }
 
 
