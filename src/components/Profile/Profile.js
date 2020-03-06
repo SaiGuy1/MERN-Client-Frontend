@@ -136,8 +136,8 @@ class Profile extends Component {
                   </select>
                 </div>
                 <div className="form-group">
-                  <button id="editbtn" className="edit btn btn-primary " onClick={this.toggleEdit}> Edit Info </button>
-                  <button id="savebtn" style={{ display: "none" }} type="submit" className="btn btn-primary" onClick={this.handleSubmit}>Save</button>
+                  <button id="editbtn" className="edit btn btn-success " onClick={this.toggleEdit}> Edit Info </button>
+                  <button id="savebtn" style={{ display: "none" }} type="submit" className="btn btn-success" onClick={this.handleSubmit}>Save</button>
                   <button id="cancelbtn" style={{ display: "none" }} className="edit btn btn-secondary" onClick={this.toggleEdit}> Cancel </button>
                 </div>
                 <div className="form-group">

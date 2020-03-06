@@ -2,12 +2,13 @@ body {
   box-sizing: border-box;
   margin:0;
   padding:0;
-  background-image: linear-gradient(dodgerblue, powderblue);
+  background-color: rgba(168, 199, 236, 0.3);
+
 }
 
 .btn {
-  background-color: yellowgreen;
-  border-color: olivedrab;
+  /* background-color: yellowgreen; */
+  border:none;
 }
 
 .add-post {
@@ -16,7 +17,8 @@ body {
 }
 
 .navbar {
-  background-color: olivedrab;
+  /* background-color: olivedrab; */
+  background-color:#66A314;
 }
 
 .navbar-brand {
