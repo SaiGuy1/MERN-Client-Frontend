@@ -80,7 +80,7 @@ class CreatePost extends React.Component {
         console.log(res)
         console.log(res.data)
 
-        window.location='/profile';
+        window.location='/';
         // this.setState({
         //   userData: res.data
         // })
