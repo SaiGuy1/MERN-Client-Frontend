@@ -111,7 +111,8 @@ class Profile extends Component {
           <div className="row mt-5">
             <div className="col-sm-3">
               <form>
-                <div ><img src="https://i.imgur.com/cG6YD9S.jpg" /></div>
+                {/* <div ><img src="https://i.imgur.com/cG6YD9S.jpg" /></div> */}
+                <div ><img src="https://clipartart.com/images250_/default-profile-picture-clipart-1.jpg" /></div>
                 <div className="form-group">
                   <label for="username">Username</label>
                   <input type="username" className="form-control" id="username" aria-describedby="usernameHelp" placeholder="Enter username" value={this.state.userData.username} disabled onChange={this.handleUserNameChange} />

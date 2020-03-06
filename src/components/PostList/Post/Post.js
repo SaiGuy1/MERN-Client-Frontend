@@ -41,7 +41,11 @@ const post = (props) => {
   return(
 
     <>
+<<<<<<< HEAD
     <div class="card mt-4 mb-3 ml-5 shadow p-3 bg-white rounded" >
+=======
+    <div class="card mb-3  shadow p-3 bg-white rounded" style={{minWidth: 30 + 'vw'}}>
+>>>>>>> submaster
       <div class="row no-gutters">
       <div class="col-lg-4">
         <img src={"https://i.ibb.co/tMG6d9p/images.jpg" } class="card-img" />
@@ -62,9 +66,21 @@ const post = (props) => {
       </div>
         <div class="col-md-8">
           <div class="card-body">
+<<<<<<< HEAD
             {<h5 class="card-title">{props.post.location.city}</h5>}
             {<h5 class="card-title">{props.post.title}</h5> }
             { <p class="card-text">{props.post.content}</p> }
+=======
+            {/* BREAKS CODE>>>> no location.city defined */}
+            {/* <h5 class="card-title">{props.post.location.city}</h5> */}
+            
+            {/* This WORKS but only passes the LOCATION ID */}
+            <h5 class="card-title">{props.post.location}</h5>
+            {/* BREAKS CODE>>>> */}
+            
+            <h5 class="card-title">{props.post.title}</h5>
+            <p class="card-text">{props.post.content}</p>
+>>>>>>> submaster
             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
           </div>
         </div>
