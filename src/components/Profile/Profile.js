@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import './Profile.css'
-import PostList from '../PostList/PostList';
+import UserPostList from '../PostList/UserPostList';
 
 
 class Profile extends Component {
@@ -153,7 +153,7 @@ class Profile extends Component {
             <div className="col-sm-9">
               <h2 className="ml-5">Personal Posts</h2>
               <div className="pre-scrollable">
-              <PostList />
+              <UserPostList />
               </div>
             </div>
           </div>
