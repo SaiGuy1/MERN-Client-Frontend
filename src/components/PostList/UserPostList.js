@@ -19,7 +19,7 @@ class PostList extends Component {
 
   componentDidMount = () => {
     console.log("POSTLIST")
-    axios.get(`http://localhost:4000/api/v1/posts` ,{headers: {"authorization": `bearer ${localStorage.getItem('jwt')}`}})
+    axios.get(`http://localhost:4000/api/v1/posts/user/own_posts` ,{headers: {"authorization": `bearer ${localStorage.getItem('jwt')}`}})
       .then(res=> {
         console.log('data',res.data);
         this.setState({

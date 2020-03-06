@@ -78,7 +78,7 @@ class Signup extends Component {
 
         <FormGroup>
           <Col smOffset={2} sm={10}>
-            <Button value='Submit' type='submit' onClick={this.handleSubmit} >Sign up</Button>
+            <Button className="btn-success" value='Submit' type='submit' onClick={this.handleSubmit} >Sign up</Button>
           </Col>
         </FormGroup>
       </Form>
@@ -88,7 +88,7 @@ class Signup extends Component {
         <div className="form-group">
           <label htmlFor='username'>User Name</label>
           <input type='text' name='username' onChange={this.handleChange} aria-describedby="usernameHelp" placeholder="Enter UserName" />
-          <small id="usernameHelp" class="form-text text-muted">Required - must be at least 4 characters</small>
+          <small id="usernameHelp" className="form-text text-muted">Required - must be at least 4 characters</small>
         </div>
 
         <div className="form-group">
@@ -100,7 +100,7 @@ class Signup extends Component {
           <label htmlFor='password'>Password</label>
           <input type='password' name='password' onChange={this.handleChange} placeholder="Enter password"/>
         </div>
-          <button className='btn btn-primary float-right mb-5' value='Submit' type='submit' onClick={this.handleSubmit}>Signup</button>
+          <button className='btn btn-success float-right mb-5' value='Submit' type='submit' onClick={this.handleSubmit}>Signup</button>
         </form> */}
       </div>
       </>

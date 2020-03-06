@@ -80,7 +80,7 @@ class Login extends Component {
 
                 <FormGroup>
                   <Col smOffset={2} sm={10}>
-                    <Button value='Submit' type='submit' onClick={this.handleSubmit} >Log in</Button>
+                    <Button className="btn-success" value='Submit' type='submit' onClick={this.handleSubmit} >Log in</Button>
                   </Col>
                 </FormGroup>
               </Form>
@@ -96,7 +96,7 @@ class Login extends Component {
                     <input type='password' name='password' onChange={this.handleChange} />
                 </div>
                 <input value='Submit' type='submit' onClick={this.handleSubmit} />
-                <button className='btn btn-primary float-right mb-5' value='Submit' type='submit' onClick={this.handleSubmit}>Signup</button>
+                <button className='btn btn-success float-right mb-5' value='Submit' type='submit' onClick={this.handleSubmit}>Signup</button>
                 </form> */}
             </div>
           </div>

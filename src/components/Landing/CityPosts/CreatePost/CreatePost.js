@@ -10,6 +10,7 @@ import {  Button,
 class CreatePost extends React.Component {
   state = {
     cities: [],
+    newPost: {},
     userData: {},
   }
   // AXIOS call for all CITIES
@@ -56,6 +57,16 @@ class CreatePost extends React.Component {
       }
     });
   }
+
+  handleImg = event => {
+    let value = event.target.value;
+    this.setState({
+      userData: {
+        ...this.state.userData,
+        img: value
+      }
+    })
+  }
   handleSubmit = event => {
     event.preventDefault();
     console.log('Creating POST...');
@@ -69,10 +80,7 @@ class CreatePost extends React.Component {
         console.log('Posting...')
         console.log(res)
         console.log(res.data)
-        window.location='/';
-        // this.setState({
-        //   userData: res.data
-        // })
+        this.props.handleClose();
       })
       .catch(err => {
         console.log(err.response)
@@ -106,15 +114,19 @@ class CreatePost extends React.Component {
             <FormControl id="content" as="textarea" rows="5" placeholder="Adventure goes here" onChange={this.handlePostContent}/>
           </FormGroup>
           {/* Add a PICTURE functionality */}
-          {/* <div class="form-group">
-            <label id="picture" for="exampleFormControlFile1">City Picture</label>
-            <input type="file" class="form-control-file" id="exampleFormControlFile1"/>
-          </div> */}
+
+          <FormGroup>
+            <FormLabel>City Picture</FormLabel>
+            <FormControl id="img" type="text" placeholder="photo url" onChange={this.handleImg}/>
+          </FormGroup>
+         
+
           <FormGroup>
             <Col smOffset={2} sm={10}>
               <Button value='Submit' type='submit' onClick={this.handleSubmit} >Submit</Button>
             </Col>
           </FormGroup>
+
         </Form>
       </div>
       </>

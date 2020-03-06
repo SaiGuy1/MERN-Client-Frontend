@@ -1,18 +1,15 @@
 import React from 'react';
+import './CityPosts.css';
 import Modal from 'react-bootstrap/Modal';
-import CreatePost from './CreatePost/CreatePost';
-import './CityPosts.css'
 import CityList from '../../CityList/CityList';
 import axios from 'axios';
 import City from '../../CityList/City/City';
 import Post from '../../PostList/Post/Post';
 import LocationInfo from './LocationInfo/LocationInfo'
-
+import CreatePost from './CreatePost/CreatePost'
 class CityPost extends React.Component {
-
   constructor(props, context) {
     super(props, context);
-
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
     // this.handleSignupShow = this.handleSignupShow.bind(this);
@@ -27,10 +24,10 @@ class CityPost extends React.Component {
 
 //GET, all city , move from cityList
 componentDidMount(){
-  axios
-    .get('http://localhost:4000/api/v1/location')
+  axios.get('http://localhost:4000/api/v1/location')
     .then(res => {
       console.log(res.data)
+      res.data.AllLocation.sort((a,b) => a.cityId - b.cityId)
       this.setState({
         cities: res.data.AllLocation
       })
@@ -96,7 +93,7 @@ render(){
 
                 {/* eric end */}
                   {this.state.currentCityPost.length == 0 ? <div>no post</div> :<><LocationInfo postLocation={this.state.currentCityPost[0].location}/>
-                  <button className="btn add-post" onClick={this.handleShow}>+</button>
+                  <button className="btn add-post btn-success" onClick={this.handleShow}>+</button>
                   {this.displayCityPost(this.state.currentCityPost)}</>}
                 </div>
         {/* ------- */}
@@ -110,7 +107,7 @@ render(){
             <h2>Create Post</h2>
             </Modal.Header>
             <Modal.Body>
-              <CreatePost setCurrentUser={this.props.setCurrentUser}/>
+              <CreatePost setCurrentUser={this.props.setCurrentUser} handleClose={this.handleClose}/>
               <hr />
             </Modal.Body>
           </Modal>

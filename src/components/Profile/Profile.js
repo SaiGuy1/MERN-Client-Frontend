@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import './Profile.css'
-import PostList from '../PostList/PostList';
+import UserPostList from '../PostList/UserPostList';
 
 
 class Profile extends Component {
@@ -119,7 +119,7 @@ class Profile extends Component {
                 </div>
                 <div className="form-group">
                   <label for="location">Location</label>
-                  <select id="location" name="location" class="form-control" onChange={this.handleCity.bind(this)} disabled>
+                  <select id="location" name="location" className="form-control" onChange={this.handleCity.bind(this)} disabled>
                     {this.state.cities.map(city => {
                         // console.log(city)
                         // console.log('incity userdata',this.state.userData);
@@ -136,8 +136,8 @@ class Profile extends Component {
                   </select>
                 </div>
                 <div className="form-group">
-                  <button id="editbtn" className="edit btn btn-primary " onClick={this.toggleEdit}> Edit Info </button>
-                  <button id="savebtn" style={{ display: "none" }} type="submit" className="btn btn-primary" onClick={this.handleSubmit}>Save</button>
+                  <button id="editbtn" className="edit btn btn-success " onClick={this.toggleEdit}> Edit Info </button>
+                  <button id="savebtn" style={{ display: "none" }} type="submit" className="btn btn-success" onClick={this.handleSubmit}>Save</button>
                   <button id="cancelbtn" style={{ display: "none" }} className="edit btn btn-secondary" onClick={this.toggleEdit}> Cancel </button>
                 </div>
                 <div className="form-group">
@@ -152,8 +152,8 @@ class Profile extends Component {
             </div>
             <div className="col-sm-9">
               <h2 className="ml-5">Personal Posts</h2>
-              <div class="pre-scrollable">
-              <PostList />
+              <div className="pre-scrollable">
+              <UserPostList />
               </div>
             </div>
           </div>
