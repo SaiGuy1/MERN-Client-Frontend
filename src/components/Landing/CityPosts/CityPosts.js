@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'react-bootstrap/Modal';
-import CreatePost from '../../CreatePost/CreatePost';
+import CreatePost from './CreatePost/CreatePost';
 import './CityPosts.css'
 import CityList from '../../CityList/CityList';
 import axios from 'axios';
@@ -20,13 +20,11 @@ class CityPost extends React.Component {
     this.state = {
       createpostshow: false,
       // signupshow:false,
+      currentCityPost:[],
+      cities:[]
     };
   }
 
-state = {
-  currentCityPost:[],
-  cities:[]
-}
 //GET, all city , move from cityList
 componentDidMount(){
   axios 

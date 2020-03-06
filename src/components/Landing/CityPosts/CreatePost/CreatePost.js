@@ -79,6 +79,8 @@ class CreatePost extends React.Component {
         console.log('Posting...')
         console.log(res)
         console.log(res.data)
+
+        window.location='/profile';
         // this.setState({
         //   userData: res.data
         // })
