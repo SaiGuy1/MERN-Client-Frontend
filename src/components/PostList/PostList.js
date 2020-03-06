@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import { NavLink, Link } from 'react-router-dom';
 import axios from "axios";
 import Post from './Post/Post';
+import './PostList.css'
 
 class PostList extends Component {
 
@@ -61,7 +62,7 @@ class PostList extends Component {
       })
       console.log(posts)
       return(
-        <div>
+        <div class="postContainer">
           {posts}
         </div>
         // for(i = 0; i < this.state.id.length; i++) {

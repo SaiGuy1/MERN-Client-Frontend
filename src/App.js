@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
   // Link
@@ -37,32 +36,22 @@ class App extends Component {
   }
   handleLogout(){
     localStorage.removeItem('jwt');
-    window.location='/';
+    window.location='/'; // <--- NO! BAD
   }
 
 
 
   render() {
     return (
-      <Router>
-
+      <>
         <Navigation isLogin={this.state.isLogin} setCurrentUser={this.setCurrentUser} handleLogout={this.handleLogout} />
-
+        
         <Switch>
           <Route path="/profile" component={Profile} />
           <Route path="/postdetail/:id" component={PostDetail} />
-         
           <Route exact path="/" render={() => <Landing isLogin={this.state.isLogin} setCurrentUser={this.setCurrentUser} />}/>
-          
-        
-         
-         
-
-
         </Switch>
-
-      </Router>
-
+      </>
     );
   }
 }

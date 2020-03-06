@@ -10,24 +10,25 @@ import CreatePost from './CreatePost/CreatePost'
 class CityPost extends React.Component {
   constructor(props, context) {
     super(props, context);
-    
-   
-
-    this.handleCreateShow = this.handleCreateShow.bind(this);
-    this.handleCreateClose = this.handleCreateClose.bind(this);
-   
+    this.handleShow = this.handleShow.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    // this.handleSignupShow = this.handleSignupShow.bind(this);
+    // this.handleSignupClose = this.handleSignupClose.bind(this);
     this.state = {
-      createshow: false,
+      createpostshow: false,
+      // signupshow:false,
       currentCityPost:[],
-      cities:[],
+      cities:[]
     };
   }
+
 //GET, all city , move from cityList
 componentDidMount(){
-  axios 
+  axios
     .get('http://localhost:4000/api/v1/location')
     .then(res => {
       console.log(res.data)
+      res.data.AllLocation.sort((a,b) => a.cityId - b.cityId)
       this.setState({
         cities: res.data.AllLocation
       })
@@ -40,6 +41,14 @@ componentDidMount(){
 
 }
 
+// Handle OPEN and CLOSE of CREATE POST
+handleShow() {
+  this.setState({ createpostshow: true });
+}
+
+handleClose() {
+  this.setState({ createpostshow: false });
+}
 
 
 displayLocation = cities =>{
@@ -89,33 +98,48 @@ handleCreateClose(){
 
 render(){
   return(
-    
-    <div className="container citypostlist pt-5">
+    <>
+    <div className="container  citypostlist pt-5">
       <div className="row">
-        <div className="col-sm-4"><CityList displayLocation={this.displayLocation} cities={this.state.cities}/></div>
-        <div className="col-sm-8 card">
-          {this.state.currentCityPost.length == 0 ? 
-          <div>no post</div> :
-          <>
-          <LocationInfo postLocation={this.state.currentCityPost[0].location}/>
-          <button className="btn btn-primary" onClick={this.handleCreateShow}>Add new post</button>
-          <Modal show={this.state.createshow} onHide={this.handleCreateClose}>
-                <Modal.Header closeButton>
-                <h2>CreatePost</h2>
-                </Modal.Header>
-                <Modal.Body>
-                  <CreatePost postLocation={this.state.currentCityPost[0].location}/>
-                </Modal.Body>
-              </Modal>
-          {this.displayCityPost(this.state.currentCityPost)}
-          </>}
-        </div>
-        
+        <div className=" pre-scrollable col-sm-4">
+          <CityList displayLocation={this.displayLocation} cities={this.state.cities}/></div>
+        <div className="pre-scrollable col-sm-8 card">
+
+
+
+                {/* eric end */}
+                  {this.state.currentCityPost.length == 0 ? <div>no post</div> :<><LocationInfo postLocation={this.state.currentCityPost[0].location}/><button className="btn btn-primary" onClick={this.handleShow}>Add new post</button>{this.displayCityPost(this.state.currentCityPost)}</>}
+                </div>
+        {/* ------- */}
+
+
+
+
+        {/* modal */}
+          <Modal show={this.state.createpostshow} onHide={this.handleClose}>
+            <Modal.Header closeButton>
+            <h2>Create Post</h2>
+            </Modal.Header>
+            <Modal.Body>
+              <CreatePost setCurrentUser={this.props.setCurrentUser}/>
+              <hr />
+            </Modal.Body>
+          </Modal>
+
+        {/* <div className="">
+          <button>Delete -- will open confirm modal to delete post</button>
+          <button>edit -- will open edit modal to delete post</button>
+        </div> */}
+
+
+
+
       </div>
     </div>
+    </>
    )
 }
-  
+
 }
 
 
