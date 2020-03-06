@@ -59,10 +59,10 @@ render(){
   return(
 
     <>
-    <div class="card mt-4 mb-3 ml-5 shadow p-3 bg-white rounded" >
-      <div class="row no-gutters">
-      <div class="col-lg-4">
-        <img src={"https://i.ibb.co/tMG6d9p/images.jpg" } class="card-img" />
+    <div className="card mt-4 mb-3 ml-5 shadow p-3 bg-white rounded" >
+      <div className="row no-gutters">
+      <div className="col-lg-4">
+        <img src={"https://i.ibb.co/tMG6d9p/images.jpg" } className="card-img" />
         <Link to ={{
             pathname: '/postdetail/'+ this.props.post._id,
             state: {
@@ -100,9 +100,9 @@ render(){
           <FormControl id="content" as="textarea" rows="5" placeholder="Adventure goes here" onChange={this.handlePostContent}/>
         </FormGroup>
         {/* Add a PICTURE functionality */}
-        {/* <div class="form-group">
+        {/* <div className="form-group">
           <label id="picture" for="exampleFormControlFile1">City Picture</label>
-          <input type="file" class="form-control-file" id="exampleFormControlFile1"/>
+          <input type="file" className="form-control-file" id="exampleFormControlFile1"/>
         </div> */}
         <FormGroup>
           <Col smOffset={2} sm={10}>

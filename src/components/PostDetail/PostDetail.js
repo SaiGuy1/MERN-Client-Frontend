@@ -44,13 +44,13 @@ class PostDetail extends Component {
         <>
         <h1> Post Details</h1>
         <h2>{this.props.match.params.id}</h2>
-        <div class="container">
-        <div class="card mb-3 ml-3 mr-2 shadow p-3 mb-5 bg-white rounded" >
-            <img src={"https://i.ibb.co/M87rPqy/joseph-barrientos-Ji-G7-Bu1-Mo-M-unsplash.jpg"} class="card-img" />
-              <div class="card-body">
-                <h5 class="card-title">San Francisco</h5>
-                <p class="card-text">{this.state.content}</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        <div className="container">
+        <div className="card mb-3 ml-3 mr-2 shadow p-3 mb-5 bg-white rounded" >
+            <img src={"https://i.ibb.co/M87rPqy/joseph-barrientos-Ji-G7-Bu1-Mo-M-unsplash.jpg"} className="card-img" />
+              <div className="card-body">
+                <h5 className="card-title">San Francisco</h5>
+                <p className="card-text">{this.state.content}</p>
+                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
               </div>
           </div>
         </div>

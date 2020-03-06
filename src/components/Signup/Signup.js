@@ -88,7 +88,7 @@ class Signup extends Component {
         <div className="form-group">
           <label htmlFor='username'>User Name</label>
           <input type='text' name='username' onChange={this.handleChange} aria-describedby="usernameHelp" placeholder="Enter UserName" />
-          <small id="usernameHelp" class="form-text text-muted">Required - must be at least 4 characters</small>
+          <small id="usernameHelp" className="form-text text-muted">Required - must be at least 4 characters</small>
         </div>
 
         <div className="form-group">

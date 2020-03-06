@@ -62,31 +62,31 @@ class PostList extends Component {
       })
       console.log(posts)
       return(
-        <div class="postContainer">
+        <div className="postContainer">
           {posts}
         </div>
         // for(i = 0; i < this.state.id.length; i++) {
         // <>
-        // <div class= "row happy birthday kenneth">
-        // <div class="card mb-3 ml-3 mr-2 shadow p-3 mb-5 bg-white rounded" style={{width: 540 + 'px'}}>
-        //   <div class="row no-gutters">
-        //   <div class="col-lg-4">
-        //     <img src={"https://i.ibb.co/M87rPqy/joseph-barrientos-Ji-G7-Bu1-Mo-M-unsplash.jpg"} class="card-img" />
+        // <div className= "row happy birthday kenneth">
+        // <div className="card mb-3 ml-3 mr-2 shadow p-3 mb-5 bg-white rounded" style={{width: 540 + 'px'}}>
+        //   <div className="row no-gutters">
+        //   <div className="col-lg-4">
+        //     <img src={"https://i.ibb.co/M87rPqy/joseph-barrientos-Ji-G7-Bu1-Mo-M-unsplash.jpg"} className="card-img" />
         //     <Link to ={{
         //         pathname: '/postdetail/'+ this.state.id[i],
         //         state: {
         //             id: this.state.id[i]
         //         }
         //        }} >
-        //     <button type="detail-button" class="btn btn-outline-dark mt-3 btn-block" >Post Detail</button>
+        //     <button type="detail-button" className="btn btn-outline-dark mt-3 btn-block" >Post Detail</button>
         //     </Link>
         //   </div>
-        //     <div class="col-md-8">
-        //       <div class="card-body">
-        //         <h5 class="card-title">{this.state.city[i]}</h5>
-        //         <h5 class="card-title">{this.state.id[i]}</h5>
-        //         <p class="card-text">{this.state.content[i]}</p>
-        //         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        //     <div className="col-md-8">
+        //       <div className="card-body">
+        //         <h5 className="card-title">{this.state.city[i]}</h5>
+        //         <h5 className="card-title">{this.state.id[i]}</h5>
+        //         <p className="card-text">{this.state.content[i]}</p>
+        //         <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
         //       </div>
         //     </div>
         //   </div>
