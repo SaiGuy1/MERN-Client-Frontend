@@ -25,7 +25,13 @@ const post = (props) => {
       </div>
         <div class="col-md-8">
           <div class="card-body">
-            <h5 class="card-title">{props.post.location.city}</h5>
+            {/* BREAKS CODE>>>> no location.city defined */}
+            {/* <h5 class="card-title">{props.post.location.city}</h5> */}
+            
+            {/* This WORKS but only passes the LOCATION ID */}
+            <h5 class="card-title">{props.post.location}</h5>
+            {/* BREAKS CODE>>>> */}
+            
             <h5 class="card-title">{props.post.title}</h5>
             <p class="card-text">{props.post.content}</p>
             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
