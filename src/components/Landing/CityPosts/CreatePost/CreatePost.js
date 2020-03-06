@@ -70,10 +70,7 @@ class CreatePost extends React.Component {
         console.log('Posting...')
         console.log(res)
         console.log(res.data)
-        window.location='/';
-        // this.setState({
-        //   userData: res.data
-        // })
+        this.props.handleClose();
       })
       .catch(err => {
         console.log(err.response)

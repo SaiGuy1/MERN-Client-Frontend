@@ -81,21 +81,6 @@ displayCityPost = posts => {
   })
 }
 
-handleCreate = () => {
-
-}
-
-handleCreateShow(){
-  this.setState({
-    createshow: true
-  })
-}
-handleCreateClose(){
-  this.setState({
-    createshow: false
-  })
-}
-
 render(){
   return(
     <>
@@ -121,7 +106,7 @@ render(){
             <h2>Create Post</h2>
             </Modal.Header>
             <Modal.Body>
-              <CreatePost setCurrentUser={this.props.setCurrentUser}/>
+              <CreatePost setCurrentUser={this.props.setCurrentUser} handleClose={this.handleClose}/>
               <hr />
             </Modal.Body>
           </Modal>
