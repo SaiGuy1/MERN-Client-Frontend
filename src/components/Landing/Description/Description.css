@@ -1,0 +1,16 @@
+h3 {
+  justify-content: center;
+}
+
+/* .card {
+  width: 20rem;
+} */
+
+.title {
+  font-size: 2em;
+  text-align: center;
+}
+
+.descriptions {
+  padding:0;
+}

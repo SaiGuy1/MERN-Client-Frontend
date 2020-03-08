@@ -1,0 +1,9 @@
+.container {
+  max-width: 75vw;
+}
+
+.pre-scrollable {
+  max-height: 72vh;
+  max-width: 60vw;
+  border:10px radial-gradient(circle, olivedrab 0%, rgba(70,252,209,1) 100%);
+}

@@ -1,0 +1,52 @@
+body {
+  box-sizing: border-box;
+  margin:0;
+  padding:0;
+  background-color: rgba(168, 199, 236, 0.3);
+
+}
+
+.btn {
+  /* background-color: yellowgreen; */
+  border:none;
+}
+
+.add-post {
+  border-radius: 25px;
+  margin-left: 43vw;
+}
+
+.navbar {
+  /* background-color: olivedrab; */
+  background-color:#66A314;
+}
+
+.navbar-brand {
+  color: white;
+}
+
+.navbar-toggler {
+  color: white;
+}
+
+.wayfarer-heading {
+  margin: 20px;
+}
+
+.navbar-div {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between; */
+}
+
+.nav-list {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin: 0;
+}
+
+.sign {
+  margin: 20px;
+}
